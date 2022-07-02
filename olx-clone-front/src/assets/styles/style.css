@@ -1,0 +1,59 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ================= GENERAL ================= */
+:root {
+  font-size: 62.5%;
+}
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+  margin: 0 auto;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  overflow: visible;
+
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Nunito Sans', sans-serif;
+  font-size: 1.6rem;
+  text-align: center;
+  color: rgb(74, 74, 74);
+
+  background-color: #f6f6f6;
+}
+
+li,
+ul {
+  list-style-type: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+img {
+  width: 100%;
+  height: 100%;
+}
+
+h2 {
+  font-size: 1.9rem;
+  font-weight: 600;
+  text-align: left;
+}
+
+.white-background {
+  background: white;
+}
+/* ================= NAV ================= */
+
+/*  MEDIA - 1024px ================= */
