@@ -21,13 +21,15 @@ export default function DetailsPage() {
         `https://dvx-site.herokuapp.com/api/ads/${id}`
       )
       const data = await response.json()
-      const date = format(parseISO(data.createdAt), 'dd/MM')
-      const hour = format(parseISO(data.createdAt), 'HH:mm')
-      setAdDetail(data)
-      setCreatedAt({ date, hour })
-      data.price.length <= 4
-        ? setDividedPrice((data.price / 12 + data.price * 0.1).toFixed(2))
-        : null
+      if (data) {
+        const date = format(parseISO(data.createdAt), 'dd/MM')
+        const hour = format(parseISO(data.createdAt), 'HH:mm')
+        setAdDetail(data)
+        setCreatedAt({ date, hour })
+        data.price.length <= 4
+          ? setDividedPrice((data.price / 12 + data.price * 0.1).toFixed(2))
+          : null
+      }
     }
 
     fetchData()
