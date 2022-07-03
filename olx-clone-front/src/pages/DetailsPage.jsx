@@ -11,28 +11,29 @@ export default function DetailsPage() {
   const [dividedPrice, setDividedPrice] = useState(null)
   const [createdAt, setCreatedAt] = useState({})
   const { id } = useParams()
+  const [props, setProps] = useState({})
 
   let priceDotted = null
   adDetail ? (priceDotted = addDots(adDetail.price)) : null
 
+  if (adDetail && dividedPrice && createdAt && priceDotted) {
+    setProps({ adDetail, dividedPrice, createdAt, priceDotted })
+  }
+
   useEffect(() => {
-    const fetchData = async () => {
-      const response = await fetch(
-        `https://dvx-site.herokuapp.com/api/ads/${id}`
-      )
-      const data = await response.json()
-      if (data) {
+    fetch(`https://dvx-site.herokuapp.com/api/ads/${id}`)
+      .then(response => response.json())
+      .then(data => {
+        setAdDetail(data)
+
         const date = format(parseISO(data.createdAt), 'dd/MM')
         const hour = format(parseISO(data.createdAt), 'HH:mm')
-        setAdDetail(data)
         setCreatedAt({ date, hour })
+
         data.price.length <= 4
           ? setDividedPrice((data.price / 12 + data.price * 0.1).toFixed(2))
           : null
-      }
-    }
-
-    fetchData()
+      })
   }, [])
 
   function addDots(nStr) {
@@ -42,12 +43,10 @@ export default function DetailsPage() {
     let x2 = x.length > 1 ? '.' + x[1] : ''
     var rgx = /(\d+)(\d{3})/
     while (rgx.test(x1)) {
-      x1 = x1.replace(rgx, '$1' + '.' + '$2') // changed comma to dot here
+      x1 = x1.replace(rgx, '$1' + '.' + '$2')
     }
     return x1 + x2
   }
-
-  const props = { adDetail, dividedPrice, createdAt, priceDotted }
 
   return (
     <div>
