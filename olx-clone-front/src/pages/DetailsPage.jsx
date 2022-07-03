@@ -16,10 +16,6 @@ export default function DetailsPage() {
   let priceDotted = null
   adDetail ? (priceDotted = addDots(adDetail.price)) : null
 
-  if (adDetail && dividedPrice && createdAt && priceDotted) {
-    setProps({ adDetail, dividedPrice, createdAt, priceDotted })
-  }
-
   useEffect(() => {
     if (id) {
       fetch(`https://dvx-site.herokuapp.com/api/ads/${id}`)
@@ -36,7 +32,11 @@ export default function DetailsPage() {
             : null
         })
     }
-  }, [])
+
+    if (adDetail && dividedPrice && createdAt && priceDotted) {
+      setProps({ adDetail, dividedPrice, createdAt, priceDotted })
+    }
+  }, [id])
 
   function addDots(nStr) {
     nStr += ''
