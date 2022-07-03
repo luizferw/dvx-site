@@ -11,6 +11,7 @@ const {
   listUsers,
   getUser
 } = require('./controllers/registerController')
+const path = require('path')
 
 const app = express()
 
