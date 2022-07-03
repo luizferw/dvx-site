@@ -14,6 +14,10 @@ export default function DetailsPage() {
   const [props, setProps] = useState('')
   const [priceDotted, setPriceDotted] = useState('')
 
+  const value = useMemo(() => {
+    return { adDetail, dividedPrice, createdAt, priceDotted }
+  }, [props])
+
   useEffect(() => {
     fetch(`https://dvx-site.herokuapp.com/api/ads/${id}`)
       .then(response => response.json())
@@ -29,8 +33,6 @@ export default function DetailsPage() {
         data.price.length <= 4
           ? setDividedPrice((data.price / 12 + data.price * 0.1).toFixed(2))
           : null
-
-        setProps({ adDetail, dividedPrice, createdAt, priceDotted })
       })
   }, [id])
 
@@ -51,8 +53,8 @@ export default function DetailsPage() {
       <div className="DetailsPage bg-white">
         <Navbar />
         <div className="mx-10 mt-8 grid grid-cols-2">
-          <DetailsContentLeft props={props} />
-          <DetailsContentRight props={props} />
+          <DetailsContentLeft props={value} />
+          <DetailsContentRight props={value} />
         </div>
       </div>
       <Footer />
