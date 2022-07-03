@@ -12,9 +12,7 @@ export default function DetailsPage() {
   const [createdAt, setCreatedAt] = useState({})
   const { id } = useParams()
   const [props, setProps] = useState({})
-
-  let priceDotted = null
-  adDetail ? (priceDotted = addDots(adDetail.price)) : null
+  const [priceDotted, setPriceDotted] = useState({})
 
   useEffect(() => {
     fetch(`https://dvx-site.herokuapp.com/api/ads/${id}`)
@@ -26,14 +24,16 @@ export default function DetailsPage() {
         const hour = format(parseISO(data.createdAt), 'HH:mm')
         setCreatedAt({ date, hour })
 
+        setPriceDotted(addDots(data.price))
+
         data.price.length <= 4
           ? setDividedPrice((data.price / 12 + data.price * 0.1).toFixed(2))
           : null
-      })
 
-    if (adDetail && dividedPrice && createdAt && priceDotted) {
-      setProps({ adDetail, dividedPrice, createdAt, priceDotted })
-    }
+        if (adDetail && dividedPrice && createdAt && priceDotted) {
+          setProps({ adDetail, dividedPrice, createdAt, priceDotted })
+        }
+      })
   }, [id])
 
   function addDots(nStr) {

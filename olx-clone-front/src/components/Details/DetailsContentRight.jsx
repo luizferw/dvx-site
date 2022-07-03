@@ -395,8 +395,8 @@ export default function DetailsContentRight({ props }) {
           <div className="tips grid grid-cols-[40px,_1fr] gap-9 bg-[#F9F9F9] p-6 border border-[#D8D8D8] rounded-lg w-[calc(100%_+_24px)]">
             <span className="self-center">
               <img
-                src="https://static.olx.com.br/cd/vi/images/tip-badge.svg"
                 style={{ width: '40px', height: '40px', marginRight: '24px' }}
+                src="https://static.olx.com.br/cd/vi/images/tip-badge.svg"
               />
             </span>
             <span className="flex flex-col gap-4 text-left">
