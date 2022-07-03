@@ -21,7 +21,7 @@ export default function About() {
               </button>
             </div>
             <figure>
-              <img src="./src/assets/table-olx.png" />
+              <img src="../../../../assets/table-olx.png" />
             </figure>
           </div>
 
@@ -37,7 +37,7 @@ export default function About() {
               </button>
             </div>
             <figure>
-              <img src="./src/assets/car-olx.png" />
+              <img src="../../../../assets/car-olx.png" />
             </figure>
           </div>
         </div>
