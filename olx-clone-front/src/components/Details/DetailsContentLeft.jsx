@@ -2,10 +2,9 @@ import { useEffect, useState } from 'react'
 import { useContext } from 'react'
 import { Ads } from '../../App'
 
-export default function DetailsContent({ props }) {
+export default function DetailsContentLeft({ props }) {
   const { ads } = useContext(Ads)
   const [filteredAds, setFilteredAds] = useState('')
-  // console.log(filteredAds)
 
   function addDots(nStr) {
     nStr += ''
