@@ -30,9 +30,7 @@ export default function DetailsPage() {
           ? setDividedPrice((data.price / 12 + data.price * 0.1).toFixed(2))
           : null
 
-        if (adDetail && dividedPrice && createdAt && priceDotted) {
-          setProps({ adDetail, dividedPrice, createdAt, priceDotted })
-        }
+        setProps({ adDetail, dividedPrice, createdAt, priceDotted })
       })
   }, [id])
 
