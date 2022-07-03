@@ -11,8 +11,8 @@ export default function DetailsPage() {
   const [dividedPrice, setDividedPrice] = useState(null)
   const [createdAt, setCreatedAt] = useState({})
   const { id } = useParams()
-  const [props, setProps] = useState({})
-  const [priceDotted, setPriceDotted] = useState({})
+  const [props, setProps] = useState('')
+  const [priceDotted, setPriceDotted] = useState('')
 
   useEffect(() => {
     fetch(`https://dvx-site.herokuapp.com/api/ads/${id}`)
