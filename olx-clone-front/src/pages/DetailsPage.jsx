@@ -1,5 +1,5 @@
 import { format, parseISO } from 'date-fns'
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import DetailsContentLeft from '../components/Details/DetailsContentLeft'
 import DetailsContentRight from '../components/Details/DetailsContentRight'
@@ -11,12 +11,11 @@ export default function DetailsPage() {
   const [dividedPrice, setDividedPrice] = useState(null)
   const [createdAt, setCreatedAt] = useState({})
   const { id } = useParams()
-  const [props, setProps] = useState('')
   const [priceDotted, setPriceDotted] = useState('')
 
   const value = useMemo(() => {
     return { adDetail, dividedPrice, createdAt, priceDotted }
-  }, [props])
+  }, [id])
 
   useEffect(() => {
     fetch(`https://dvx-site.herokuapp.com/api/ads/${id}`)
