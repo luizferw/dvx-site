@@ -1,7 +1,6 @@
 const express = require('express')
 const cors = require('cors')
 const multer = require('multer')
-const dotenv = require('dotenv')
 const { Storage } = require('@google-cloud/storage')
 const mongoose = require('mongoose')
 const indexGet = require('./controllers/indexController')
@@ -15,8 +14,7 @@ const {
 const path = require('path')
 
 const app = express()
-
-dotenv.config()
+require('dotenv').config()
 
 const dbURI = process.env.MONGO_URL
 
@@ -61,10 +59,6 @@ app.use(cors())
 
 app.use(express.static(path.join(__dirname, '/olx-clone-front/dist')))
 
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '/olx-clone-front/dist', 'index.html'))
-})
-
 app.use('/api/ads', anuncioRoutes)
 app.use('/api/announce', publicarRoutes)
 app.post('/api/register', registerUser)
@@ -85,4 +79,8 @@ app.post('/api/upload', multerMid.single('file'), async (req, res) => {
   } catch {}
 })
 
-app.use('/api/', indexGet)
+app.use('/api', indexGet)
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '/olx-clone-front/dist', 'index.html'))
+})
