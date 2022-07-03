@@ -56,10 +56,10 @@ app.use(express.urlencoded({ extended: true }))
 
 app.use(cors())
 
-app.use(express.static(path.join(__dirname, '/olx-clone-front/build')))
+app.use(express.static(path.join(__dirname, '/olx-clone-front/dist')))
 
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '/olx-clone-front/build', 'index.html'))
+  res.sendFile(path.join(__dirname, '/olx-clone-front/dist', 'index.html'))
 })
 
 app.use('/api/ads', anuncioRoutes)
