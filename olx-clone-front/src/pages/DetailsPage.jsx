@@ -21,19 +21,21 @@ export default function DetailsPage() {
   }
 
   useEffect(() => {
-    fetch(`https://dvx-site.herokuapp.com/api/ads/${id}`)
-      .then(response => response.json())
-      .then(data => {
-        setAdDetail(data)
+    if (id) {
+      fetch(`https://dvx-site.herokuapp.com/api/ads/${id}`)
+        .then(response => response.json())
+        .then(data => {
+          setAdDetail(data)
 
-        const date = format(parseISO(data.createdAt), 'dd/MM')
-        const hour = format(parseISO(data.createdAt), 'HH:mm')
-        setCreatedAt({ date, hour })
+          const date = format(parseISO(data.createdAt), 'dd/MM')
+          const hour = format(parseISO(data.createdAt), 'HH:mm')
+          setCreatedAt({ date, hour })
 
-        data.price.length <= 4
-          ? setDividedPrice((data.price / 12 + data.price * 0.1).toFixed(2))
-          : null
-      })
+          data.price.length <= 4
+            ? setDividedPrice((data.price / 12 + data.price * 0.1).toFixed(2))
+            : null
+        })
+    }
   }, [])
 
   function addDots(nStr) {
