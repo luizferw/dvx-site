@@ -1,6 +1,7 @@
 const express = require('express')
 const cors = require('cors')
 const multer = require('multer')
+const dotenv = require('dotenv')
 const { Storage } = require('@google-cloud/storage')
 const mongoose = require('mongoose')
 const indexGet = require('./controllers/indexController')
@@ -15,8 +16,9 @@ const path = require('path')
 
 const app = express()
 
-const dbURI =
-  'mongodb+srv://luiz:teste1234@nodejs.8go0i.mongodb.net/?retryWrites=true&w=majority'
+dotenv.config()
+
+const dbURI = process.env.MONGO_URL
 
 const connectDatabase = async () => {
   try {
