@@ -1,5 +1,5 @@
 import { format, parseISO } from 'date-fns'
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import DetailsContentLeft from '../components/Details/DetailsContentLeft'
 import DetailsContentRight from '../components/Details/DetailsContentRight'
@@ -12,10 +12,6 @@ export default function DetailsPage() {
   const [createdAt, setCreatedAt] = useState({})
   const { id } = useParams()
   const [priceDotted, setPriceDotted] = useState('')
-
-  const value = useMemo(() => {
-    return { adDetail, dividedPrice, createdAt, priceDotted }
-  }, [id])
 
   useEffect(() => {
     fetch(`https://dvx-site.herokuapp.com/api/ads/${id}`)
@@ -51,9 +47,13 @@ export default function DetailsPage() {
     <div>
       <div className="DetailsPage bg-white">
         <Navbar />
-        <div className="mx-10 mt-8 grid grid-cols-2">
-          <DetailsContentLeft props={value} />
-          <DetailsContentRight props={value} />
+        <div className="flex flex-col xl:mx-10 xl:mt-8 xl:grid xl:grid-cols-2 xl:gap-4">
+          <DetailsContentLeft
+            props={{ adDetail, dividedPrice, createdAt, priceDotted }}
+          />
+          <DetailsContentRight
+            props={{ adDetail, dividedPrice, createdAt, priceDotted }}
+          />
         </div>
       </div>
       <Footer />

@@ -5,6 +5,7 @@ import { Ads } from '../../App'
 export default function DetailsContentLeft({ props }) {
   const { ads } = useContext(Ads)
   const [filteredAds, setFilteredAds] = useState('')
+  const [favorite, setFavorite] = useState(false)
 
   function addDots(nStr) {
     nStr += ''
@@ -31,8 +32,8 @@ export default function DetailsContentLeft({ props }) {
   }, [ads, props.adDetail])
 
   return (
-    <div className="DetailsContent">
-      <div className="index flex items-center gap-1">
+    <div className="DetailsContent w-full">
+      <div className="index flex items-center gap-1 justify-start px-10 xl:px-0 my-7">
         <span className="text-lg">
           {props.adDetail && props.adDetail.address.city}
         </span>
@@ -50,24 +51,72 @@ export default function DetailsContentLeft({ props }) {
             d="M9.47 17.47a.75.75 0 001.06 1.06l6-6a.75.75 0 000-1.06l-6-6a.75.75 0 00-1.06 1.06L14.94 12l-5.47 5.47z"
           ></path>
         </svg>
-        <span className="text-lg">
+        <span className="text-lg ">
           {props.adDetail && props.adDetail.category}
         </span>
       </div>
+
       <div className="info text-left">
-        <h2 className="text-[2.50rem] mt-6">
+        <h2 className="hidden xl:block text-[2.50rem] mt-6">
           {props.adDetail && props.adDetail.title}
         </h2>
-        <span className="opacity-60 text-xl">
+        <span className="hidden xl:block opacity-60 text-xl">
           Published in {props.adDetail && props.createdAt.date} at{' '}
           {props.adDetail && props.createdAt.hour} - id:{' '}
           {props.adDetail && props.adDetail._id}
         </span>
       </div>
-      <div className="image mt-4  w-[87%] h-[36rem]">
-        <img src="https://via.placeholder.com/950" className="rounded-xl"></img>
+
+      <div className="image mt-4 bg-[#E5E5E5] xl:bg-white">
+        <img
+          src="https://via.placeholder.com/950"
+          className="rounded-xl px-64 h-[350px] xl:w-[89%] xl:h-[380px] xl:p-0 "
+        ></img>
       </div>
-      <div className="options text-left mt-8">
+
+      <div className="options text-left mt-8 px-10 xl:px-0">
+        <div className="flex items-center justify-between xl:hidden">
+          <span className="block font-normal text-[#4A4A4A] xl:hidden">
+            {props.adDetail && props.adDetail.title}
+          </span>
+
+          <span>
+            {favorite ? (
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                width="24"
+                height="24"
+                size="24"
+                color="#9027b0"
+                onClick={() => setFavorite(false)}
+              >
+                <path
+                  fill="#9027b0"
+                  fillRule="evenodd"
+                  d="M12 4.819l.52-.52A6.14 6.14 0 1121.2 12.98l-8.68 8.681a.737.737 0 01-1.042 0l-8.681-8.68a6.139 6.139 0 018.682-8.682l.52.52z"
+                ></path>
+              </svg>
+            ) : (
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                width="24"
+                height="24"
+                color="currentColor"
+                size="24"
+                onClick={() => setFavorite(true)}
+              >
+                <path
+                  fill="#9027b0"
+                  fillRule="evenodd"
+                  d="M20.141 11.92A4.637 4.637 0 0016.861 4c-1.23 0-2.41.489-3.28 1.36l-.52.52a1.5 1.5 0 01-2.122 0l-.52-.52a4.639 4.639 0 00-6.56 6.56l8.14 8.14 8.142-8.14zM12 4.818l.52-.52A6.14 6.14 0 1121.2 12.98l-8.68 8.681a.737.737 0 01-1.042 0l-8.681-8.68a6.139 6.139 0 018.682-8.682l.52.52z"
+                ></path>
+              </svg>
+            )}
+          </span>
+        </div>
+
         <div className="flex items-center gap-4 text-purple-800 font-semibold">
           <h3 className="text-[2.2rem] font-normal text-[#4A4A4A]">
             $ {props.adDetail && props.priceDotted}
@@ -111,7 +160,8 @@ export default function DetailsContentLeft({ props }) {
           </span>
         </div>
       </div>
-      <div className="optionDown text-left text-[1.35rem]">
+
+      <div className="optionDown px-10 xl:px-0 text-left text-[1.35rem]">
         {props.dividedPrice ? (
           <div className="split flex gap-3">
             <span className="font-semibold">
@@ -122,13 +172,22 @@ export default function DetailsContentLeft({ props }) {
             </span>
           </div>
         ) : null}
+        <span className="block xl:hidden opacity-60 text-xl py-12 border-border-gray-200 border-b">
+          Published in {props.adDetail && props.createdAt.date} at{' '}
+          {props.adDetail && props.createdAt.hour}
+        </span>
       </div>
-      <div className="description text-left pt-12 pb-9 max-w-[87%]">
+
+      <div className="description text-left pt-12 pb-9 max-w-[87%] px-10 xl:px-0">
+        <div className="block xl:hidden pb-8">
+          <h3 className="font-semibold text-3xl">Description</h3>
+        </div>
         <div className="content text-2xl">
           {props.adDetail && props.adDetail.description}
         </div>
       </div>
-      <div className="buttons text-left flex gap-10 pb-20">
+
+      <div className="buttons hidden xl:flex text-left  gap-10 pb-20">
         <span className="flex gap-4 text-2xl items-center border border-orange-400 text-orange-400 rounded-full px-6 h-[3.75rem] hover:bg-orange-400 hover:text-white hover:cursor-pointer">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -182,9 +241,8 @@ export default function DetailsContentLeft({ props }) {
         </span>
       </div>
 
-      <div className="border border-gray-200 w-36"></div>
-
-      <div className="details w-[50%] text-left py-12">
+      <div className="details w-[50%] text-left pb-12 px-10 xl:px-0">
+        <div className="border border-gray-200 w-36 mb-12"></div>
         <div className="title pb-8">
           <h3 className="font-semibold text-3xl">Details</h3>
         </div>
@@ -197,20 +255,16 @@ export default function DetailsContentLeft({ props }) {
           </div>
         </div>
       </div>
-      <div className="border border-gray-200 w-36"></div>
 
       {filteredAds.length !== 0 && (
-        <div>
+        <div className="px-10 xl:px-0">
+          <div className="border border-gray-200 w-36"></div>
           <div className="related text-left pt-12 pb-7">
             <div className="title pb-8">
               <h3 className="font-semibold text-3xl">Related Ads</h3>
             </div>
             <div
-              className={`grid gap-10 pb-5  overflow-x-auto ${
-                filteredAds.length < 10
-                  ? `grid-cols-[repeat(${filteredAds.length + 2},20rem)]`
-                  : `grid-cols-[repeat(10,_20rem)]`
-              } `}
+              className={`grid gap-10 pb-5  overflow-x-auto grid-cols-[repeat(10,_20rem)] `}
             >
               {filteredAds.map((ad, index) => {
                 return (
@@ -235,9 +289,9 @@ export default function DetailsContentLeft({ props }) {
         </div>
       )}
 
-      <div className="border border-gray-200 w-36"></div>
+      <div className="border border-gray-200 w-36 mx-10 xl:mx-0"></div>
 
-      <div className="localization text-left py-12">
+      <div className="localization text-left py-12 px-10 xl:px-0">
         <div className="title pb-8">
           <h3 className="font-semibold text-3xl">Localization</h3>
         </div>
@@ -263,7 +317,7 @@ export default function DetailsContentLeft({ props }) {
         </div>
       </div>
 
-      <div className="border border-gray-200 w-36 mb-24"></div>
+      <div className="border border-gray-200 w-36 mb-24 mx-10 xl:mx-0"></div>
     </div>
   )
 }

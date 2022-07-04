@@ -1,7 +1,8 @@
 import styled from 'styled-components'
 
 export const FooterStyle = styled.footer`
-  padding: 6.5rem auto;
+  padding-block: 6.5rem;
+  padding-inline: 11.5rem;
 
   border-top: 0.2px solid rgb(210, 210, 210);
 
@@ -74,7 +75,7 @@ export const FooterStyle = styled.footer`
     gap: 0.65rem;
     font-size: 1.14rem;
 
-    text-align: center;
+    text-align: left;
 
     padding-top: 3rem;
 
@@ -111,12 +112,12 @@ export const FooterStyle = styled.footer`
       .help {
         margin-bottom: 2.5rem;
       }
+    }
 
-      .footer {
-        text-align: center;
+    .footer {
+      text-align: center;
 
-        gap: 1.3rem;
-      }
+      gap: 1.3rem;
     }
   }
 
@@ -141,6 +142,8 @@ export const FooterStyle = styled.footer`
   }
 
   @media (max-width: 425px) {
+    padding-inline: 0.5rem;
+
     .header {
       padding-bottom: 1rem;
 

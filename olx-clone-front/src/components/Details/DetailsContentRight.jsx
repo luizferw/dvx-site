@@ -1,13 +1,7 @@
-import { useContext } from 'react'
 import { Link } from 'react-router-dom'
-import { User } from '../../App'
-import { format, parseISO } from 'date-fns'
 import { useState } from 'react'
-import { useEffect } from 'react'
 
 export default function DetailsContentRight({ props }) {
-  const { userData } = useContext(User)
-  const [date, setDate] = useState('')
   const [sticky, setSticky] = useState(false)
 
   setInterval(() => {
@@ -18,18 +12,12 @@ export default function DetailsContentRight({ props }) {
     }
   }, 200)
 
-  useEffect(() => {
-    if (userData) {
-      setDate(format(parseISO(userData.createdAt), 'dd/MM/yyyy'))
-    }
-  }, [userData])
-
   return (
-    <div className=" grid grid-cols-[285px,_1fr] pt-14">
+    <div className="w-full xl:pt-14 xl:grid xl:grid-cols-[285px,_1fr] ">
       <div>
         <div className="price relative pb-11">
           <svg
-            className=" left-0"
+            className="hidden xl:block left-0"
             width="24px"
             height="64px"
             viewBox="0 0 24 64"
@@ -39,7 +27,7 @@ export default function DetailsContentRight({ props }) {
               d="M22.5567837,4.9542595e-15 L23.9989109,0 L23.9989109,63.9999716 L22.5567837,63.9999716 C19.760336,63.9999716 17.1668634,62.5397636 15.7166337,60.1487484 L1.15985004,36.1487626 C-0.38661668,33.5990799 -0.38661668,30.4008918 1.15985004,27.8512091 L15.7166337,3.85122325 C17.1668634,1.46020804 19.760336,2.2883175e-14 22.5567837,1.24344979e-14 Z"
             ></path>
           </svg>
-          <div className="bg-[#6E0AD6] h-[64px] w-full rounded-tr-xl rounded-br-xl text-white flex items-center gap-2 absolute top-0 left-[24px] px-4">
+          <div className="hidden xl:flex bg-[#6E0AD6] h-[64px] w-full rounded-tr-xl rounded-br-xl text-white items-center gap-2 absolute top-0 left-[24px] px-4">
             <span className="block">$ </span>
             <span
               className={
@@ -70,7 +58,7 @@ export default function DetailsContentRight({ props }) {
             </span>
           </div>
           {props.dividedPrice ? (
-            <div className="mr-[-24px] flex flex-row gap-3 justify-end pt-3">
+            <div className="hidden xl:flex mr-[-24px] flex-row gap-3 justify-end pt-3">
               <span className="text-[1.3rem] font-semibold block">
                 In up to 12x of $ {props.dividedPrice}
               </span>
@@ -81,151 +69,166 @@ export default function DetailsContentRight({ props }) {
           ) : null}
         </div>
 
-        <div className="flex flex-col gap-6">
-          <div
-            className={`infoPerson  px-11 py-9 text-center bg-[#F9F9F9] border border-[#D8D8D8] rounded-lg ${
-              sticky
-                ? 'sticky w-[calc(100%+24px)] top-0 block shadow-lg shadow-white'
-                : `w-[calc(100%_+_24px)] `
-            }`}
-          >
-            <div className="pb-9">
-              <h2 className="text-center pb-3 capitalize">
-                {userData && userData.username}
-              </h2>
-              <div className="flex justify-around items-center px-2">
-                <span className="text-white text-2xl font-semibold bg-orange-500 hover:brightness-95 flex gap-5 px-6 py-3 h-fit items-center rounded-full transition hover:cursor-pointer">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="24"
-                    height="24"
-                    color="currentColor"
-                    size="24"
-                  >
-                    <path
-                      fill="currentColor"
-                      fillRule="evenodd"
-                      d="M8 23.75a2.75 2.75 0 110-5.5 2.75 2.75 0 010 5.5zm0-1.5a1.25 1.25 0 100-2.5 1.25 1.25 0 000 2.5zm12 1.5a2.75 2.75 0 110-5.5 2.75 2.75 0 010 5.5zm0-1.5a1.25 1.25 0 100-2.5 1.25 1.25 0 000 2.5zm-13.682-17H23a.75.75 0 01.735.897l-1.68 8.39a2.746 2.746 0 01-2.735 2.213H8.756a2.75 2.75 0 01-2.75-2.392l-1.52-11.52A1.25 1.25 0 003.25 1.75H1a.75.75 0 010-1.5h2.251a2.75 2.75 0 012.723 2.392l.344 2.608zm1.176 8.913A1.252 1.252 0 008.75 15.25h10.584a1.25 1.25 0 001.25-1.007l1.5-7.493H6.517l.978 7.413z"
-                    ></path>
-                  </svg>
-                  Buy
-                </span>
-                <span className="text-orange-500 text-2xl transition font-semibold bg-[#FDF0E2] hover:bg-[#FFE1BF] border border-[#f97316] flex gap-5 px-6 py-3 h-fit items-center rounded-full hover:cursor-pointer">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 24 24"
-                    width="24"
-                    height="24"
-                    color="currentColor"
-                    size="24"
-                  >
-                    <path
-                      fill="currentColor"
-                      fillRule="evenodd"
-                      d="M20.77 15.635a9.25 9.25 0 01-8.268 5.115 9.13 9.13 0 01-3.854-.842l-5.41 1.804a.75.75 0 01-.95-.95l1.804-5.41A9.128 9.128 0 013.25 11.5a9.249 9.249 0 015.112-8.27 9.128 9.128 0 014.138-.98l.541.001c4.698.26 8.449 4.01 8.709 8.749v.5a9.127 9.127 0 01-.98 4.135zM8.464 18.39a.75.75 0 01.575.042 7.632 7.632 0 003.462.819 7.751 7.751 0 006.93-4.288 7.63 7.63 0 00.82-3.46l.001-.46C20.034 7.106 16.893 3.965 13 3.75h-.502a7.634 7.634 0 00-3.463.82 7.75 7.75 0 00-4.285 6.932 7.63 7.63 0 00.82 3.46.75.75 0 01.042.575l-1.426 4.277 4.277-1.425z"
-                    ></path>
-                  </svg>
-                  Chat
-                </span>
-              </div>
-            </div>
-            <div className="border-t border-gray-200 w-[87%] m-auto pt-8">
-              <div className="flex gap-3 justify-center items-center">
-                <span className="text-xl">Verified with:</span>
-                <span>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                  >
-                    <g fill="none" fillRule="evenodd">
-                      <circle cx="12" cy="12" r="12" fill="#10CE64"></circle>
-                      <path
-                        fill="#FFF"
-                        d="M15.848 17.869c-1.598.381-3.196-.191-3.196-.191-1.598-1.145-2.632-2.481-3.196-3.435l-.094-.096-.094-.095c-.564-.954-1.598-2.48-2.068-4.485 0 0 .188-1.717 1.128-3.053 1.128-.859 1.692-.382 1.692-.382l1.504 2.195a.627.627 0 0 1-.188.859l-1.034.668s-.94.286.846 3.053c1.786 2.672 2.256 1.813 2.256 1.813l1.034-.668c.282-.19.658-.095.846.19l1.504 2.196c0-.096.188.667-.94 1.43z"
-                      ></path>
-                    </g>
-                  </svg>
-                </span>
-                <span>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                  >
-                    <g fill="none" fillRule="evenodd">
-                      <circle cx="12" cy="12" r="12" fill="#10CE64"></circle>
-                      <path
-                        fill="#FFF"
-                        fillRule="nonzero"
-                        d="M6.9 7.2a.845.845 0 0 0-.333.07l5.09 4.791c.22.207.455.207.676 0l5.1-4.79A.845.845 0 0 0 17.1 7.2H6.9zm-.89.833c-.006.044-.01.09-.01.136v6.462c0 .537.401.969.9.969h10.2c.499 0 .9-.432.9-.97V8.17c0-.047-.004-.093-.01-.137l-5.067 4.76a1.342 1.342 0 0 1-1.856 0L6.01 8.033z"
-                      ></path>
-                    </g>
-                  </svg>
-                </span>
-                <span>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                  >
-                    <g fill="none" fillRule="evenodd">
-                      <circle cx="12" cy="12" r="12" fill="#E5E5E5"></circle>
-                      <path
-                        fill="#FFF"
-                        fillRule="nonzero"
-                        d="M13.486 18v-5.466h1.778l.266-2.14h-2.044V9.032c0-.62.167-1.038 1.022-1.038H15.6V6.083A14.543 14.543 0 0 0 14.015 6c-1.571 0-2.642.994-2.642 2.82v1.574H9.6v2.14h1.773V18h2.113z"
-                      ></path>
-                    </g>
-                  </svg>
-                </span>
-              </div>
-              <div className="flex flex-col gap-5 pt-1 justify-center items-center">
-                <span className="block text-lg opacity-70">
-                  On OLX since {userData && date}
-                </span>
-                <Link to="/">
-                  <span className="flex items-center gap-2 text-purple-700 font-semibold text-lg">
-                    <svg width="16" height="16" viewBox="0 0 16 16">
-                      <g
-                        id="Page-1"
-                        stroke="none"
-                        strokeWidth="1"
-                        fill="none"
-                        fillRule="evenodd"
+        <div className="flex flex-col gap-24 xl:gap-6 mx-8 xl:mx-0">
+          <div>
+            <h3 className="xl:hidden p-0 text-left font-semibold text-3xl pb-8">
+              Advertiser
+            </h3>
+            <div
+              className={`infoPerson p-0  xl:px-11 py-9 text-center bg-[#F9F9F9] border border-[#D8D8D8] rounded-lg ${
+                sticky
+                  ? 'xl:sticky xl:w-[calc(100%+24px)] top-0 block shadow-lg shadow-white'
+                  : `xl:w-[calc(100%_+_24px)] `
+              }`}
+            >
+              <div className="pb-2 xl:pb-9">
+                <h2 className="text-center pb-3 capitalize">
+                  {props.adDetail && props.adDetail.author}
+                </h2>
+                <div className="fixed z-10 flex gap-5 flex-col bottom-0 left-0 xl:static xl:py-5 w-full xl:bg-[#F9F9F9] xl:flex xl:justify-around xl:items-center xl:px-2">
+                  <div className="flex items-center justify-center gap-5">
+                    <span className="shadow-lg text-white w-[108px] py-[1.15rem] px-5 text-2xl font-semibold bg-orange-500 hover:brightness-95 flex gap-5 xl:px-6 xl:py-3 h-fit items-center justify-center rounded-full transition hover:cursor-pointer">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="24"
+                        height="24"
+                        color="currentColor"
+                        size="24"
                       >
-                        <g
-                          id="layers"
-                          transform="translate(1.000000, 1.000000)"
-                          fill="#4A4A4A"
-                          fillRule="nonzero"
-                        >
-                          <path
-                            d="M6.7763932,-0.447213595 C6.91715695,-0.517595468 7.08284305,-0.517595468 7.2236068,-0.447213595 L14.2236068,3.0527864 C14.5921311,3.23704854 14.5921311,3.76295146 14.2236068,3.9472136 L7.2236068,7.4472136 C7.08284305,7.51759547 6.91715695,7.51759547 6.7763932,7.4472136 L-0.223606798,3.9472136 C-0.592131067,3.76295146 -0.592131067,3.23704854 -0.223606798,3.0527864 L6.7763932,-0.447213595 Z M7,0.559016994 L1.11803399,3.5 L7,6.44098301 L12.881966,3.5 L7,0.559016994 Z"
-                            id="Path"
-                          ></path>
-                          <path
-                            d="M13.7763932,10.0527864 C14.0233825,9.92929178 14.323719,10.029404 14.4472136,10.2763932 C14.5707082,10.5233825 14.470596,10.823719 14.2236068,10.9472136 L7.2236068,14.4472136 C7.08284305,14.5175955 6.91715695,14.5175955 6.7763932,14.4472136 L-0.223606798,10.9472136 C-0.470596046,10.823719 -0.57070822,10.5233825 -0.447213595,10.2763932 C-0.323718971,10.029404 -0.023382451,9.92929178 0.223606798,10.0527864 L7,13.440983 L13.7763932,10.0527864 Z"
-                            id="Path"
-                          ></path>
-                          <path
-                            d="M7,9.94098301 L13.7763932,6.5527864 C14.0233825,6.42929178 14.323719,6.52940395 14.4472136,6.7763932 C14.5707082,7.02338245 14.470596,7.32371897 14.2236068,7.4472136 L7.2236068,10.9472136 C7.08284305,11.0175955 6.91715695,11.0175955 6.7763932,10.9472136 L-0.223606798,7.4472136 C-0.470596046,7.32371897 -0.57070822,7.02338245 -0.447213595,6.7763932 C-0.323718971,6.52940395 -0.023382451,6.42929178 0.223606798,6.5527864 L7,9.94098301 Z"
-                            id="Path"
-                          ></path>
-                        </g>
+                        <path
+                          fill="currentColor"
+                          fillRule="evenodd"
+                          d="M8 23.75a2.75 2.75 0 110-5.5 2.75 2.75 0 010 5.5zm0-1.5a1.25 1.25 0 100-2.5 1.25 1.25 0 000 2.5zm12 1.5a2.75 2.75 0 110-5.5 2.75 2.75 0 010 5.5zm0-1.5a1.25 1.25 0 100-2.5 1.25 1.25 0 000 2.5zm-13.682-17H23a.75.75 0 01.735.897l-1.68 8.39a2.746 2.746 0 01-2.735 2.213H8.756a2.75 2.75 0 01-2.75-2.392l-1.52-11.52A1.25 1.25 0 003.25 1.75H1a.75.75 0 010-1.5h2.251a2.75 2.75 0 012.723 2.392l.344 2.608zm1.176 8.913A1.252 1.252 0 008.75 15.25h10.584a1.25 1.25 0 001.25-1.007l1.5-7.493H6.517l.978 7.413z"
+                        ></path>
+                      </svg>
+                      Buy
+                    </span>
+
+                    <span
+                      className="shadow-lg xl:shadow-sm text-orange-500 text-2xl transition font-semibold bg-[#FDF0E2] hover:bg-[#FFE1BF] border border-[#f97316]
+                 flex gap-5 xl:px-6 xl:py-3 h-fit items-center rounded-full justify-center hover:cursor-pointer w-[108px] py-[1.15rem] px-5"
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 24 24"
+                        width="24"
+                        height="24"
+                        color="currentColor"
+                        size="24"
+                      >
+                        <path
+                          fill="currentColor"
+                          fillRule="evenodd"
+                          d="M20.77 15.635a9.25 9.25 0 01-8.268 5.115 9.13 9.13 0 01-3.854-.842l-5.41 1.804a.75.75 0 01-.95-.95l1.804-5.41A9.128 9.128 0 013.25 11.5a9.249 9.249 0 015.112-8.27 9.128 9.128 0 014.138-.98l.541.001c4.698.26 8.449 4.01 8.709 8.749v.5a9.127 9.127 0 01-.98 4.135zM8.464 18.39a.75.75 0 01.575.042 7.632 7.632 0 003.462.819 7.751 7.751 0 006.93-4.288 7.63 7.63 0 00.82-3.46l.001-.46C20.034 7.106 16.893 3.965 13 3.75h-.502a7.634 7.634 0 00-3.463.82 7.75 7.75 0 00-4.285 6.932 7.63 7.63 0 00.82 3.46.75.75 0 01.042.575l-1.426 4.277 4.277-1.425z"
+                        ></path>
+                      </svg>
+                      Chat
+                    </span>
+                  </div>
+                  <div className="bg-[#eee] shadow-lg xl:shadow-sm py-3 font-semibold xl:hidden">
+                    {props.adDetail && props.adDetail.author}{' '}
+                    <span className="font-normal text-2xl">(advertiser)</span>
+                  </div>
+                </div>
+              </div>
+              <div className="border-t border-gray-200 w-[87%] m-auto pt-8">
+                <div className="flex gap-3 justify-center items-center">
+                  <span className="text-xl">Verified with:</span>
+                  <span>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                    >
+                      <g fill="none" fillRule="evenodd">
+                        <circle cx="12" cy="12" r="12" fill="#10CE64"></circle>
+                        <path
+                          fill="#FFF"
+                          d="M15.848 17.869c-1.598.381-3.196-.191-3.196-.191-1.598-1.145-2.632-2.481-3.196-3.435l-.094-.096-.094-.095c-.564-.954-1.598-2.48-2.068-4.485 0 0 .188-1.717 1.128-3.053 1.128-.859 1.692-.382 1.692-.382l1.504 2.195a.627.627 0 0 1-.188.859l-1.034.668s-.94.286.846 3.053c1.786 2.672 2.256 1.813 2.256 1.813l1.034-.668c.282-.19.658-.095.846.19l1.504 2.196c0-.096.188.667-.94 1.43z"
+                        ></path>
                       </g>
                     </svg>
-                    See all ads
                   </span>
-                </Link>
+                  <span>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                    >
+                      <g fill="none" fillRule="evenodd">
+                        <circle cx="12" cy="12" r="12" fill="#10CE64"></circle>
+                        <path
+                          fill="#FFF"
+                          fillRule="nonzero"
+                          d="M6.9 7.2a.845.845 0 0 0-.333.07l5.09 4.791c.22.207.455.207.676 0l5.1-4.79A.845.845 0 0 0 17.1 7.2H6.9zm-.89.833c-.006.044-.01.09-.01.136v6.462c0 .537.401.969.9.969h10.2c.499 0 .9-.432.9-.97V8.17c0-.047-.004-.093-.01-.137l-5.067 4.76a1.342 1.342 0 0 1-1.856 0L6.01 8.033z"
+                        ></path>
+                      </g>
+                    </svg>
+                  </span>
+                  <span>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                    >
+                      <g fill="none" fillRule="evenodd">
+                        <circle cx="12" cy="12" r="12" fill="#E5E5E5"></circle>
+                        <path
+                          fill="#FFF"
+                          fillRule="nonzero"
+                          d="M13.486 18v-5.466h1.778l.266-2.14h-2.044V9.032c0-.62.167-1.038 1.022-1.038H15.6V6.083A14.543 14.543 0 0 0 14.015 6c-1.571 0-2.642.994-2.642 2.82v1.574H9.6v2.14h1.773V18h2.113z"
+                        ></path>
+                      </g>
+                    </svg>
+                  </span>
+                </div>
+                <div className="flex flex-col gap-5 pt-1 justify-center items-center">
+                  <span className="block text-lg opacity-70">
+                    On OLX since {''}
+                  </span>
+                  <Link to="/">
+                    <span className="flex items-center gap-2 text-purple-700 font-semibold text-lg">
+                      <svg width="16" height="16" viewBox="0 0 16 16">
+                        <g
+                          id="Page-1"
+                          stroke="none"
+                          strokeWidth="1"
+                          fill="none"
+                          fillRule="evenodd"
+                        >
+                          <g
+                            id="layers"
+                            transform="translate(1.000000, 1.000000)"
+                            fill="#4A4A4A"
+                            fillRule="nonzero"
+                          >
+                            <path
+                              d="M6.7763932,-0.447213595 C6.91715695,-0.517595468 7.08284305,-0.517595468 7.2236068,-0.447213595 L14.2236068,3.0527864 C14.5921311,3.23704854 14.5921311,3.76295146 14.2236068,3.9472136 L7.2236068,7.4472136 C7.08284305,7.51759547 6.91715695,7.51759547 6.7763932,7.4472136 L-0.223606798,3.9472136 C-0.592131067,3.76295146 -0.592131067,3.23704854 -0.223606798,3.0527864 L6.7763932,-0.447213595 Z M7,0.559016994 L1.11803399,3.5 L7,6.44098301 L12.881966,3.5 L7,0.559016994 Z"
+                              id="Path"
+                            ></path>
+                            <path
+                              d="M13.7763932,10.0527864 C14.0233825,9.92929178 14.323719,10.029404 14.4472136,10.2763932 C14.5707082,10.5233825 14.470596,10.823719 14.2236068,10.9472136 L7.2236068,14.4472136 C7.08284305,14.5175955 6.91715695,14.5175955 6.7763932,14.4472136 L-0.223606798,10.9472136 C-0.470596046,10.823719 -0.57070822,10.5233825 -0.447213595,10.2763932 C-0.323718971,10.029404 -0.023382451,9.92929178 0.223606798,10.0527864 L7,13.440983 L13.7763932,10.0527864 Z"
+                              id="Path"
+                            ></path>
+                            <path
+                              d="M7,9.94098301 L13.7763932,6.5527864 C14.0233825,6.42929178 14.323719,6.52940395 14.4472136,6.7763932 C14.5707082,7.02338245 14.470596,7.32371897 14.2236068,7.4472136 L7.2236068,10.9472136 C7.08284305,11.0175955 6.91715695,11.0175955 6.7763932,10.9472136 L-0.223606798,7.4472136 C-0.470596046,7.32371897 -0.57070822,7.02338245 -0.447213595,6.7763932 C-0.323718971,6.52940395 -0.023382451,6.42929178 0.223606798,6.5527864 L7,9.94098301 Z"
+                              id="Path"
+                            ></path>
+                          </g>
+                        </g>
+                      </svg>
+                      See all ads
+                    </span>
+                  </Link>
+                </div>
               </div>
             </div>
           </div>
 
-          <div className="payments p-6 flex flex-col gap-3 text-center bg-[#F9F9F9] border border-[#D8D8D8] rounded-lg w-[calc(100%_+_24px)]">
+          <div className="payments p-6 flex flex-col gap-3 text-center bg-[#F9F9F9] border border-[#D8D8D8] rounded-lg xl:w-[calc(100%_+_24px)]">
             <h4 className="text-left text-2xl font-semibold">
               Payment methods
             </h4>
@@ -387,30 +390,37 @@ export default function DetailsContentRight({ props }) {
                 ></path>
               </svg>
             </span>
-            <span className="text-purple-700 font-semibold text-xl">
+            <span className="text-purple-700 font-semibold text-xl text-left xl:text-center">
               See all
             </span>
           </div>
 
-          <div className="tips grid grid-cols-[40px,_1fr] gap-9 bg-[#F9F9F9] p-6 border border-[#D8D8D8] rounded-lg w-[calc(100%_+_24px)]">
-            <span className="self-center">
-              <img
-                style={{ width: '40px', height: '40px', marginRight: '24px' }}
-                src="https://static.olx.com.br/cd/vi/images/tip-badge.svg"
-              />
-            </span>
-            <span className="flex flex-col gap-4 text-left">
-              <h4 className="text-2xl font-semibold">Security Tips</h4>
-              <span className="flex flex-col gap-1">
-                <span className="text-xl">
-                  Do not make payments before checking what is being
-                  advertised...
-                </span>
-                <span className="text-purple-800 font-semibold text-xl">
-                  See all tips
+          <div className="pb-24">
+            <h3 className="xl:hidden p-0 text-left font-semibold text-3xl pb-8">
+              Security Tips
+            </h3>
+            <div className="grid grid-cols-[40px,_1fr] gap-9 bg-[#F9F9F9] p-12 xl:p-6 border border-[#D8D8D8] rounded-lg xl:w-[calc(100%_+_24px)]">
+              <span className="self-center">
+                <img
+                  style={{ width: '40px', height: '40px', marginRight: '24px' }}
+                  src="https://static.olx.com.br/cd/vi/images/tip-badge.svg"
+                />
+              </span>
+              <span className="flex flex-col gap-4 text-left">
+                <h4 className="hidden xl:block text-2xl font-semibold">
+                  Security Tips
+                </h4>
+                <span className="flex flex-col gap-1">
+                  <span className="text-2xl xl:text-xl">
+                    Do not make payments before checking what is being
+                    advertised...
+                  </span>
+                  <span className="text-purple-800 font-semibold text-xl">
+                    See all tips
+                  </span>
                 </span>
               </span>
-            </span>
+            </div>
           </div>
         </div>
       </div>

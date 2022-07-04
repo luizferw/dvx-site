@@ -67,6 +67,10 @@ export const SearchBarStyle = styled.div`
       padding-inline: 1.1rem;
     }
   }
+
+  @media (max-width: 425px) {
+    margin: 0;
+  }
 `
 
 export const CategoryMenuStyle = styled.div`

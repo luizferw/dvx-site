@@ -59,6 +59,10 @@ export const NavBarStyle = styled.nav`
 
     &.right {
       gap: 3rem;
+
+      @media (max-width: 640px) {
+        gap: 0;
+      }
     }
   }
 

@@ -47,9 +47,19 @@ export const RecentAdsStyle = styled.section`
 
   @media (max-width: 590px) {
     .recent-items {
-      padding-inline: 5rem;
-      grid-template-columns: 1fr;
+      padding-inline: 1rem;
+      grid-template-columns: 1fr 1fr;
       grid-row-gap: 7.5rem;
+      column-gap: 1rem;
+    }
+  }
+
+  @media (max-width: 425px) {
+    .recent-items {
+      padding-inline: 0;
+      grid-template-columns: 1fr;
+      grid-auto-rows: 19rem;
+      grid-row-gap: 7rem;
     }
   }
 `
@@ -62,6 +72,10 @@ export const AdsItemStyle = styled.div`
 
   .item-img {
     border-radius: 0.8rem;
+
+    @media (max-width: 425px) {
+      border-radius: 6px;
+    }
   }
 
   .item-title {
@@ -71,11 +85,28 @@ export const AdsItemStyle = styled.div`
 
     margin-bottom: 0.43rem;
     margin-top: 0.4rem;
+
+    @media (max-width: 425px) {
+      padding-left: 2rem;
+    }
   }
 
   .item-price {
     font-weight: 700;
     font-size: 1.54rem;
+
+    @media (max-width: 425px) {
+      display: block;
+      width: 100%;
+
+      padding-left: 2rem;
+      padding-bottom: 6px;
+
+      border-radius: 6px;
+      border-bottom: 1px solid #eee;
+
+      text-align: left;
+    }
   }
 `
 
@@ -451,6 +482,8 @@ export const AboutStyle = styled.section`
       right: 0;
 
       z-index: 2;
+
+      width: 35%;
 
       border-bottom: 2.8px solid rgb(246, 246, 246);
     }
