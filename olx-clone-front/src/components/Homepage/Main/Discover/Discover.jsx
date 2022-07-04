@@ -27,7 +27,7 @@ export default function Discover() {
             <div className="grid-item phone">
               <ul>
                 <li>Get rid of your used</li>
-                <li>Sell your cellphone</li>
+                <li>Sell your smartphone</li>
               </ul>
             </div>
           </div>
@@ -68,28 +68,28 @@ export default function Discover() {
         <div className="grid-container media-small">
           <div className="grid-item hands">
             <ul>
-              <li>Conheça os nossos</li>
-              <li>Planos Profissionais</li>
+              <li>Discover our plans</li>
+              <li>Professional plans</li>
             </ul>
           </div>
 
           <div className="grid-item house">
             <ul>
-              <li>Quer alugar ou vender?</li>
-              <li>Casas e apartamentos</li>
+              <li>Want to sell or rent?</li>
+              <li>Houses and apartments</li>
             </ul>
           </div>
 
           <div className="grid-item phone">
             <ul>
-              <li>Desapega do seu usado</li>
-              <li>Venda seu celular</li>
+              <li>Get rid of your used</li>
+              <li>Sell your smartphone</li>
             </ul>
           </div>
 
           <div className="grid-item videogame">
             <ul>
-              <li>Electronics and cellphones</li>
+              <li>Electronics and smartphones</li>
               <li>Videogames</li>
             </ul>
           </div>
