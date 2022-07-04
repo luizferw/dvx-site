@@ -33,7 +33,7 @@ export default function DetailsContentLeft({ props }) {
 
   return (
     <div className="DetailsContent w-full">
-      <div className="index flex items-center gap-1 justify-start px-10 xl:px-0 my-7">
+      <div className="index flex items-center gap-1 justify-start px-10 lmd:px-0 my-7">
         <span className="text-lg">
           {props.adDetail && props.adDetail.address.city}
         </span>
@@ -57,26 +57,26 @@ export default function DetailsContentLeft({ props }) {
       </div>
 
       <div className="info text-left">
-        <h2 className="hidden xl:block text-[2.50rem] mt-6">
+        <h2 className="hidden lmd:block text-[2.50rem] mt-6">
           {props.adDetail && props.adDetail.title}
         </h2>
-        <span className="hidden xl:block opacity-60 text-xl">
+        <span className="hidden lmd:block opacity-60 text-xl">
           Published in {props.adDetail && props.createdAt.date} at{' '}
           {props.adDetail && props.createdAt.hour} - id:{' '}
           {props.adDetail && props.adDetail._id}
         </span>
       </div>
 
-      <div className="image mt-4 bg-[#E5E5E5] xl:bg-white">
+      <div className="image mt-4 bg-[#E5E5E5] lmd:bg-white">
         <img
           src="https://via.placeholder.com/950"
-          className="rounded-xl px-64 h-[350px] xl:w-[89%] xl:h-[380px] xl:p-0 "
+          className="rounded-xl  h-[350px] sm:w-full md:px-30 md:px-64 lmd:w-[89%] lmd:h-[380px] lmd:p-0 "
         ></img>
       </div>
 
-      <div className="options text-left mt-8 px-10 xl:px-0">
-        <div className="flex items-center justify-between xl:hidden">
-          <span className="block font-normal text-[#4A4A4A] xl:hidden">
+      <div className="options text-left mt-8 px-10 lmd:px-0">
+        <div className="flex items-center justify-between lmd:hidden">
+          <span className="block font-normal text-[#4A4A4A] lmd:hidden">
             {props.adDetail && props.adDetail.title}
           </span>
 
@@ -117,7 +117,7 @@ export default function DetailsContentLeft({ props }) {
           </span>
         </div>
 
-        <div className="flex items-center gap-4 text-purple-800 font-semibold">
+        <div className="flex flex-col items-start smd:flex-row smd:items-center justify-start gap-4 text-purple-800 font-semibold">
           <h3 className="text-[2.2rem] font-normal text-[#4A4A4A]">
             $ {props.adDetail && props.priceDotted}
           </h3>
@@ -161,9 +161,9 @@ export default function DetailsContentLeft({ props }) {
         </div>
       </div>
 
-      <div className="optionDown px-10 xl:px-0 text-left text-[1.35rem]">
+      <div className="optionDown px-10 lmd:px-0 text-left text-[1.35rem]">
         {props.dividedPrice ? (
-          <div className="split flex gap-3">
+          <div className="split flex gap-3 flex-wrap">
             <span className="font-semibold">
               In up to 12x of ${props.dividedPrice}
             </span>
@@ -172,14 +172,14 @@ export default function DetailsContentLeft({ props }) {
             </span>
           </div>
         ) : null}
-        <span className="block xl:hidden opacity-60 text-xl py-12 border-border-gray-200 border-b">
+        <span className="block lmd:hidden opacity-60 text-xl py-12 border-border-gray-200 border-b">
           Published in {props.adDetail && props.createdAt.date} at{' '}
           {props.adDetail && props.createdAt.hour}
         </span>
       </div>
 
-      <div className="description text-left pt-12 pb-9 max-w-[87%] px-10 xl:px-0">
-        <div className="block xl:hidden pb-8">
+      <div className="description text-left pt-12 pb-9 max-w-[87%] px-10 lmd:px-0">
+        <div className="block lmd:hidden pb-8">
           <h3 className="font-semibold text-3xl">Description</h3>
         </div>
         <div className="content text-2xl">
@@ -187,7 +187,7 @@ export default function DetailsContentLeft({ props }) {
         </div>
       </div>
 
-      <div className="buttons hidden xl:flex text-left  gap-10 pb-20">
+      <div className="buttons hidden lmd:flex text-left  gap-10 pb-20">
         <span className="flex gap-4 text-2xl items-center border border-orange-400 text-orange-400 rounded-full px-6 h-[3.75rem] hover:bg-orange-400 hover:text-white hover:cursor-pointer">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -241,7 +241,7 @@ export default function DetailsContentLeft({ props }) {
         </span>
       </div>
 
-      <div className="details w-[50%] text-left pb-12 px-10 xl:px-0">
+      <div className="details w-[50%] text-left pb-12 px-10 lmd:px-0">
         <div className="border border-gray-200 w-36 mb-12"></div>
         <div className="title pb-8">
           <h3 className="font-semibold text-3xl">Details</h3>
@@ -257,7 +257,7 @@ export default function DetailsContentLeft({ props }) {
       </div>
 
       {filteredAds.length !== 0 && (
-        <div className="px-10 xl:px-0">
+        <div className="px-10 lmd:px-0">
           <div className="border border-gray-200 w-36"></div>
           <div className="related text-left pt-12 pb-7">
             <div className="title pb-8">
@@ -289,13 +289,13 @@ export default function DetailsContentLeft({ props }) {
         </div>
       )}
 
-      <div className="border border-gray-200 w-36 mx-10 xl:mx-0"></div>
+      <div className="border border-gray-200 w-36 mx-10 lmd:mx-0"></div>
 
-      <div className="localization text-left py-12 px-10 xl:px-0">
+      <div className="localization text-left py-12 px-10 lmd:px-0">
         <div className="title pb-8">
           <h3 className="font-semibold text-3xl">Localization</h3>
         </div>
-        <div className="flex justify-between w-[75%]">
+        <div className="flex flex-col gap-9 smd:flex-row smd:justify-between smd:w-[75%]">
           <div className="flex flex-col gap-1">
             <span className="block  text-xl opacity-70">CEP</span>
             <span className="block text-2xl font-semibold">
@@ -317,7 +317,7 @@ export default function DetailsContentLeft({ props }) {
         </div>
       </div>
 
-      <div className="border border-gray-200 w-36 mb-24 mx-10 xl:mx-0"></div>
+      <div className="border border-gray-200 w-36 mb-24 mx-10 lmd:mx-0"></div>
     </div>
   )
 }

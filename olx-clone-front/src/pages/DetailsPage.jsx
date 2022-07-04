@@ -47,7 +47,7 @@ export default function DetailsPage() {
     <div>
       <div className="DetailsPage bg-white">
         <Navbar />
-        <div className="flex flex-col xl:mx-10 xl:mt-8 xl:grid xl:grid-cols-2 xl:gap-4">
+        <div className="flex flex-col lmd:mx-10 lmd:mt-8 lmd:grid lmd:grid-cols-2 lmd:gap-4">
           <DetailsContentLeft
             props={{ adDetail, dividedPrice, createdAt, priceDotted }}
           />

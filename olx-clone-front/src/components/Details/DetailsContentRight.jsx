@@ -13,11 +13,11 @@ export default function DetailsContentRight({ props }) {
   }, 200)
 
   return (
-    <div className="w-full xl:pt-14 xl:grid xl:grid-cols-[285px,_1fr] ">
+    <div className="w-full lmd:pt-14 lmd:grid lmd:grid-cols-[285px,_1fr] ">
       <div>
         <div className="price relative pb-11">
           <svg
-            className="hidden xl:block left-0"
+            className="hidden lmd:block left-0"
             width="24px"
             height="64px"
             viewBox="0 0 24 64"
@@ -27,7 +27,7 @@ export default function DetailsContentRight({ props }) {
               d="M22.5567837,4.9542595e-15 L23.9989109,0 L23.9989109,63.9999716 L22.5567837,63.9999716 C19.760336,63.9999716 17.1668634,62.5397636 15.7166337,60.1487484 L1.15985004,36.1487626 C-0.38661668,33.5990799 -0.38661668,30.4008918 1.15985004,27.8512091 L15.7166337,3.85122325 C17.1668634,1.46020804 19.760336,2.2883175e-14 22.5567837,1.24344979e-14 Z"
             ></path>
           </svg>
-          <div className="hidden xl:flex bg-[#6E0AD6] h-[64px] w-full rounded-tr-xl rounded-br-xl text-white items-center gap-2 absolute top-0 left-[24px] px-4">
+          <div className="hidden lmd:flex bg-[#6E0AD6] h-[64px] w-full rounded-tr-xl rounded-br-xl text-white items-center gap-2 absolute top-0 left-[24px] px-4">
             <span className="block">$ </span>
             <span
               className={
@@ -58,7 +58,7 @@ export default function DetailsContentRight({ props }) {
             </span>
           </div>
           {props.dividedPrice ? (
-            <div className="hidden xl:flex mr-[-24px] flex-row gap-3 justify-end pt-3">
+            <div className="hidden lmd:flex mr-[-24px] flex-row gap-3 justify-end pt-3">
               <span className="text-[1.3rem] font-semibold block">
                 In up to 12x of $ {props.dividedPrice}
               </span>
@@ -69,25 +69,25 @@ export default function DetailsContentRight({ props }) {
           ) : null}
         </div>
 
-        <div className="flex flex-col gap-24 xl:gap-6 mx-8 xl:mx-0">
+        <div className="flex flex-col gap-24 lmd:gap-6 mx-8 lmd:mx-0">
           <div>
-            <h3 className="xl:hidden p-0 text-left font-semibold text-3xl pb-8">
+            <h3 className="lmd:hidden p-0 text-left font-semibold text-3xl pb-8">
               Advertiser
             </h3>
             <div
-              className={`infoPerson p-0  xl:px-11 py-9 text-center bg-[#F9F9F9] border border-[#D8D8D8] rounded-lg ${
+              className={`infoPerson p-0  lmd:px-11 py-9 text-center bg-[#F9F9F9] border border-[#D8D8D8] rounded-lg ${
                 sticky
-                  ? 'xl:sticky xl:w-[calc(100%+24px)] top-0 block shadow-lg shadow-white'
-                  : `xl:w-[calc(100%_+_24px)] `
+                  ? 'lmd:sticky lmd:w-[calc(100%+24px)] top-0 block shadow-lg shadow-white'
+                  : `lmd:w-[calc(100%_+_24px)] `
               }`}
             >
-              <div className="pb-2 xl:pb-9">
+              <div className="pb-2 lmd:pb-9">
                 <h2 className="text-center pb-3 capitalize">
                   {props.adDetail && props.adDetail.author}
                 </h2>
-                <div className="fixed z-10 flex gap-5 flex-col bottom-0 left-0 xl:static xl:py-5 w-full xl:bg-[#F9F9F9] xl:flex xl:justify-around xl:items-center xl:px-2">
+                <div className="fixed z-10 flex gap-5 flex-col bottom-0 left-0 lmd:static lmd:py-5 w-full lmd:bg-[#F9F9F9] lmd:flex lmd:justify-around lmd:items-center lmd:px-2">
                   <div className="flex items-center justify-center gap-5">
-                    <span className="shadow-lg text-white w-[108px] py-[1.15rem] px-5 text-2xl font-semibold bg-orange-500 hover:brightness-95 flex gap-5 xl:px-6 xl:py-3 h-fit items-center justify-center rounded-full transition hover:cursor-pointer">
+                    <span className="shadow-lg text-white w-[108px] py-[1.15rem] px-5 text-2xl font-semibold bg-orange-500 hover:brightness-95 flex gap-5 lmd:px-6 lmd:py-3 h-fit items-center justify-center rounded-full transition hover:cursor-pointer">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         width="24"
@@ -105,8 +105,8 @@ export default function DetailsContentRight({ props }) {
                     </span>
 
                     <span
-                      className="shadow-lg xl:shadow-sm text-orange-500 text-2xl transition font-semibold bg-[#FDF0E2] hover:bg-[#FFE1BF] border border-[#f97316]
-                 flex gap-5 xl:px-6 xl:py-3 h-fit items-center rounded-full justify-center hover:cursor-pointer w-[108px] py-[1.15rem] px-5"
+                      className="shadow-lg lmd:shadow-sm text-orange-500 text-2xl transition font-semibold bg-[#FDF0E2] hover:bg-[#FFE1BF] border border-[#f97316]
+                 flex gap-5 lmd:px-6 lmd:py-3 h-fit items-center rounded-full justify-center hover:cursor-pointer w-[108px] py-[1.15rem] px-5"
                     >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -125,7 +125,7 @@ export default function DetailsContentRight({ props }) {
                       Chat
                     </span>
                   </div>
-                  <div className="bg-[#eee] shadow-lg xl:shadow-sm py-3 font-semibold xl:hidden">
+                  <div className="bg-[#eee] shadow-lg lmd:shadow-sm py-3 font-semibold lmd:hidden">
                     {props.adDetail && props.adDetail.author}{' '}
                     <span className="font-normal text-2xl">(advertiser)</span>
                   </div>
@@ -228,7 +228,7 @@ export default function DetailsContentRight({ props }) {
             </div>
           </div>
 
-          <div className="payments p-6 flex flex-col gap-3 text-center bg-[#F9F9F9] border border-[#D8D8D8] rounded-lg xl:w-[calc(100%_+_24px)]">
+          <div className="payments p-6 flex flex-col gap-3 text-center bg-[#F9F9F9] border border-[#D8D8D8] rounded-lg lmd:w-[calc(100%_+_24px)]">
             <h4 className="text-left text-2xl font-semibold">
               Payment methods
             </h4>
@@ -390,16 +390,16 @@ export default function DetailsContentRight({ props }) {
                 ></path>
               </svg>
             </span>
-            <span className="text-purple-700 font-semibold text-xl text-left xl:text-center">
+            <span className="text-purple-700 font-semibold text-xl text-left lmd:text-center">
               See all
             </span>
           </div>
 
           <div className="pb-24">
-            <h3 className="xl:hidden p-0 text-left font-semibold text-3xl pb-8">
+            <h3 className="lmd:hidden p-0 text-left font-semibold text-3xl pb-8">
               Security Tips
             </h3>
-            <div className="grid grid-cols-[40px,_1fr] gap-9 bg-[#F9F9F9] p-12 xl:p-6 border border-[#D8D8D8] rounded-lg xl:w-[calc(100%_+_24px)]">
+            <div className="grid grid-cols-[40px,_1fr] gap-9 bg-[#F9F9F9] p-12 lmd:p-6 border border-[#D8D8D8] rounded-lg lmd:w-[calc(100%_+_24px)]">
               <span className="self-center">
                 <img
                   style={{ width: '40px', height: '40px', marginRight: '24px' }}
@@ -407,11 +407,11 @@ export default function DetailsContentRight({ props }) {
                 />
               </span>
               <span className="flex flex-col gap-4 text-left">
-                <h4 className="hidden xl:block text-2xl font-semibold">
+                <h4 className="hidden lmd:block text-2xl font-semibold">
                   Security Tips
                 </h4>
                 <span className="flex flex-col gap-1">
-                  <span className="text-2xl xl:text-xl">
+                  <span className="text-2xl lmd:text-xl">
                     Do not make payments before checking what is being
                     advertised...
                   </span>
