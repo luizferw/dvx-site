@@ -25,6 +25,8 @@ export default function PremiumGallery() {
           </li>
         </ul>
       </header>
+
+      <PremiumItems></PremiumItems>
     </PremiumGalleryStyle>
   )
 }

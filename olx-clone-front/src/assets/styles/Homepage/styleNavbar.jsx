@@ -18,7 +18,7 @@ export const NavBarStyle = styled.nav`
   }
 
   img {
-    max-width: 4.44rem;
+    max-width: 6.44rem;
   }
 
   li > a {
@@ -153,7 +153,7 @@ export const NavBarStyle = styled.nav`
 export const ToggleMenuStyle = styled.aside`
   position: absolute;
   top: 7.6rem;
-  left: -50rem;
+  left: ${props => props.left};
   z-index: 99;
 
   box-shadow: 0 2px 2px #eee;
@@ -161,7 +161,7 @@ export const ToggleMenuStyle = styled.aside`
   transition: 500ms;
 
   width: 38%;
-  height: 90vh;
+  height: fit-content;
 
   overflow-y: scroll;
 
@@ -180,7 +180,7 @@ export const ToggleMenuStyle = styled.aside`
     font-size: 1.6rem;
     font-weight: 400;
 
-    li {
+    .li-item {
       display: flex;
 
       gap: 1.7rem;
@@ -201,6 +201,9 @@ export const ToggleMenuStyle = styled.aside`
       .profile_span {
         display: flex;
         flex-direction: column;
+
+        align-items: flex-start;
+        justify-content: flex-start;
 
         & .myacc {
           color: #6e0ad6;

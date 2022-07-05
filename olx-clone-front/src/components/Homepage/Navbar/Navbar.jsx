@@ -5,8 +5,9 @@ import { NavBarStyle } from '../../../assets/styles/Homepage/styleNavbar'
 import ToggleMenu from './ToggleMenu'
 
 export default function Navbar() {
-  const { setLogged, userData, setUserData } = useContext(User)
   const [toggle, setToggle] = useState(false)
+
+  const { setUserData, setLogged, userData } = useContext(User)
 
   function handleExit() {
     setLogged(false)
@@ -28,16 +29,28 @@ export default function Navbar() {
           index-list left"
           >
             <li className="index-list-left__menu">
-              {toggle && <ToggleMenu props={toggle} />}
+              <ToggleMenu
+                toggle={toggle}
+                username={userData ? userData.username : ''}
+              />
               <span
                 className="material-symbols-outlined menu"
-                onClick={() => setToggle(true)}
+                onClick={() => {
+                  if (toggle) {
+                    setToggle(false)
+                  } else {
+                    setToggle(true)
+                  }
+                }}
               >
                 menu
               </span>
               <figure>
                 <Link to="/">
-                  <img src="../../../assets/dvx-logo.png" alt="logo olx" />
+                  <img
+                    src="../../../../src/assets/dvx-logo.png"
+                    alt="logo dvx"
+                  />
                 </Link>
               </figure>
             </li>
@@ -78,7 +91,7 @@ export default function Navbar() {
                 onClick={!userData ? null : handleExit}
               >
                 <span className="material-symbols-outlined person">person</span>
-                {userData ? 'Exit' : 'Enter'}
+                {userData ? 'Logout' : 'Enter'}
               </Link>
             </li>
             <li>

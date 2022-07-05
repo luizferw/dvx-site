@@ -1,5 +1,5 @@
 import { useContext } from 'react'
-import { useNavigate, Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { User } from '../App'
 import Form from '../components/Announce/Form/Form'
 import Navbar from '../components/Announce/Navbar/Navbar'
@@ -20,7 +20,7 @@ export default function Announce() {
           <div className="mb-2 p-4 text-center ">
             <Link to="/">
               <img
-                src="../assets/olx-logo.png"
+                src="../../src/assets/dvx-logo.png"
                 className="w-[6rem] mx-auto  mb-9"
               />
             </Link>
