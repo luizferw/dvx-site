@@ -1,10 +1,12 @@
-import { useContext } from 'react'
+import { useContext, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { User } from '../../../App'
 import { NavBarStyle } from '../../../assets/styles/Homepage/styleNavbar'
+import ToggleMenu from './ToggleMenu'
 
 export default function Navbar() {
   const { setLogged, userData, setUserData } = useContext(User)
+  const [toggle, setToggle] = useState(false)
 
   function handleExit() {
     setLogged(false)
@@ -18,11 +20,24 @@ export default function Navbar() {
     >
       <NavBarStyle>
         <div className="index">
-          <ul className="index-list left">
-            <li>
+          <ul
+            className="
+          
+          
+          
+          index-list left"
+          >
+            <li className="index-list-left__menu">
+              {toggle && <ToggleMenu props={toggle} />}
+              <span
+                className="material-symbols-outlined menu"
+                onClick={() => setToggle(true)}
+              >
+                menu
+              </span>
               <figure>
                 <Link to="/">
-                  <img src="../../../assets/olx-logo.png" alt="logo olx" />
+                  <img src="../../../assets/dvx-logo.png" alt="logo olx" />
                 </Link>
               </figure>
             </li>

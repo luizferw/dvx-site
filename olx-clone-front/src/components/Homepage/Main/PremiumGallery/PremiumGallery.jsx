@@ -6,18 +6,6 @@ import {
 } from '../../../../assets/styles/Homepage/styleMain'
 
 export default function PremiumGallery() {
-  const [data, setData] = useState(null)
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const response = await fetch('http://localhost:4000/')
-      const data = await response.json()
-      setData(data)
-    }
-
-    fetchData()
-  }, [])
-
   return (
     <PremiumGalleryStyle>
       <header>
@@ -37,16 +25,6 @@ export default function PremiumGallery() {
           </li>
         </ul>
       </header>
-
-      {data && (
-        <PremiumItems>
-          <AdsItem
-            minWidth="15.5rem"
-            ads={data}
-            img="https://picsum.photos/200"
-          />
-        </PremiumItems>
-      )}
     </PremiumGalleryStyle>
   )
 }

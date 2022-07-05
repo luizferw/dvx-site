@@ -6,6 +6,7 @@ export default function DetailsContentLeft({ props }) {
   const { ads } = useContext(Ads)
   const [filteredAds, setFilteredAds] = useState('')
   const [favorite, setFavorite] = useState(false)
+  const [shareNav, setShareNav] = useState(false)
 
   function addDots(nStr) {
     nStr += ''
@@ -187,7 +188,7 @@ export default function DetailsContentLeft({ props }) {
         </div>
       </div>
 
-      <div className="buttons hidden lmd:flex text-left  gap-10 pb-20">
+      <div className="buttons transition-colors hidden lmd:flex text-left  gap-10 pb-20">
         <span className="flex gap-4 text-2xl items-center border border-orange-400 text-orange-400 rounded-full px-6 h-[3.75rem] hover:bg-orange-400 hover:text-white hover:cursor-pointer">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -205,7 +206,10 @@ export default function DetailsContentLeft({ props }) {
           </svg>
           Favorite
         </span>
-        <span className="flex gap-4 text-2xl items-center border border-orange-400 text-orange-400 rounded-full px-6 h-[3.75rem] hover:bg-orange-400 hover:text-white hover:cursor-pointer">
+        <span
+          onClick={() => setShareNav(true)}
+          className="flex gap-4 text-2xl items-center border border-orange-400 text-orange-400 rounded-full px-6 h-[3.75rem] hover:bg-orange-400 hover:text-white hover:cursor-pointer relative"
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
@@ -222,6 +226,117 @@ export default function DetailsContentLeft({ props }) {
           </svg>
           Share
         </span>
+        {shareNav && (
+          <div className="rounded-xl transition-all bg-[#a76ee4] text-white py-5 px-8 absolute left-[29rem] top-[63rem] z-50 shadow-lg hover:shadow-xl hover:scale-[1.01]">
+            <div className="flex flex-col gap-8 ">
+              <div className="flex flex-col gap-4">
+                <div className="flex justify-between items-center">
+                  <span className="text-3xl font-bold">Share</span>
+                  <svg
+                    onClick={() => setShareNav(false)}
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    width="18"
+                    height="18"
+                    className="cursor-pointer hover:opacity-20"
+                    color="currentColor"
+                    size="18"
+                  >
+                    <path
+                      fill="currentColor"
+                      fillRule="evenodd"
+                      d="M13.06 12l5.47 5.47a.75.75 0 01-1.06 1.06L12 13.06l-5.47 5.47a.75.75 0 01-1.06-1.06L10.94 12 5.47 6.53a.75.75 0 011.06-1.06L12 10.94l5.47-5.47a.75.75 0 011.06 1.06L13.06 12z"
+                    ></path>
+                  </svg>
+                </div>
+                <span className="text-2xl">Choose a way to share</span>
+              </div>
+              <div className="flex flex-col justify-center items-center gap-9">
+                <span className="flex items-center gap-4 hover:bg-opacity-10 hover:bg-gray-50 py-2 rounded-md w-full justify-start cursor-pointer">
+                  <div className="flex items-center justify-center p-2 w-25 h-25 bg-[#405994] rounded-full">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 24 24"
+                      width="24"
+                      height="24"
+                      color="white"
+                      size="24"
+                      className=""
+                    >
+                      <path
+                        fill="white"
+                        fillRule="evenodd"
+                        d="M9.216 22.91V12.452H7V8.85h2.216V6.688C9.216 3.748 10.466 2 14.02 2h2.959v3.604h-1.85c-1.383 0-1.475.504-1.475 1.443L13.65 8.85H17l-.392 3.603h-2.959V22.91H9.216z"
+                      ></path>
+                    </svg>
+                  </div>
+                  <a
+                    className="text-2xl"
+                    target="blank"
+                    onClick={() => setShareNav(false)}
+                    href={`https://www.facebook.com/sharer/sharer.php?u=${window.location.href}`}
+                  >
+                    Facebook
+                  </a>
+                </span>
+                <span className="flex items-center gap-4 hover:bg-opacity-10 hover:bg-gray-50 py-2 rounded-md w-full justify-start cursor-pointer">
+                  <div className="flex items-center justify-center p-2 w-25 h-25 bg-[#49A0EB] rounded-full">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 24 24"
+                      width="24"
+                      height="24"
+                      color="white"
+                      size="24"
+                    >
+                      <path
+                        fill="white"
+                        fillRule="evenodd"
+                        d="M18.842 6.587a4.1 4.1 0 001.721-2.284 7.596 7.596 0 01-2.488 1.002A3.813 3.813 0 0015.217 4c-2.163 0-3.915 1.85-3.915 4.13 0 .324.032.64.1.941-3.255-.172-6.14-1.815-8.073-4.316a4.294 4.294 0 00-.53 2.078c0 1.432.691 2.697 1.742 3.439a3.777 3.777 0 01-1.775-.516v.05c0 2.002 1.35 3.672 3.144 4.05-.33.097-.675.146-1.034.146-.252 0-.498-.025-.736-.073.498 1.64 1.944 2.836 3.659 2.868A7.604 7.604 0 012 18.508a10.68 10.68 0 006.004 1.856c7.205 0 11.143-6.295 11.143-11.754 0-.18-.002-.358-.01-.534a8.187 8.187 0 001.954-2.139 7.507 7.507 0 01-2.249.65z"
+                      ></path>
+                    </svg>
+                  </div>
+                  <a
+                    className="text-2xl"
+                    target="blank"
+                    onClick={() => setShareNav(false)}
+                    href={`https://twitter.com/share?url=${window.location.href}`}
+                  >
+                    Twitter
+                  </a>
+                </span>
+                <span className="flex items-center gap-4 hover:bg-opacity-10 hover:bg-gray-50 py-2 rounded-md w-full justify-start cursor-pointer">
+                  <div className="flex items-center justify-center p-2 w-25 h-25 bg-[#F28237] rounded-full">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 24 24"
+                      width="24"
+                      height="24"
+                      color="white"
+                      size="24"
+                    >
+                      <path
+                        fill="white"
+                        fillRule="evenodd"
+                        d="M9.343 13.383a.75.75 0 111.201-.899 4.25 4.25 0 006.41.46l2.99-2.991a4.25 4.25 0 00-.052-5.958 4.248 4.248 0 00-5.95-.06l-1.72 1.71a.75.75 0 01-1.057-1.063l1.728-1.718a5.75 5.75 0 018.12 8.14l-2.999 3a5.75 5.75 0 01-8.671-.621zm5.201-2.899a.75.75 0 01-1.201.899 4.25 4.25 0 00-6.41-.46l-2.99 2.992a4.25 4.25 0 00.052 5.957 4.247 4.247 0 005.948.061l1.71-1.71a.75.75 0 011.06 1.06l-1.718 1.72a5.75 5.75 0 01-8.122-8.14l3-3a5.75 5.75 0 018.671.621z"
+                      ></path>
+                    </svg>
+                  </div>
+                  <a
+                    className="text-2xl"
+                    onClick={() => {
+                      navigator.clipboard.writeText(window.location.href)
+                      setShareNav(false)
+                    }}
+                  >
+                    Copy URL
+                  </a>
+                </span>
+              </div>
+            </div>
+          </div>
+        )}
+
         <span className="flex gap-4 text-2xl items-center border border-orange-400 text-orange-400 rounded-full px-6 h-[3.75rem] hover:bg-orange-400 hover:text-white hover:cursor-pointer">
           <svg
             xmlns="http://www.w3.org/2000/svg"

@@ -1,17 +1,6 @@
 import { Link } from 'react-router-dom'
-import { useState } from 'react'
 
 export default function DetailsContentRight({ props }) {
-  const [sticky, setSticky] = useState(false)
-
-  setInterval(() => {
-    if (window.scrollY && window.scrollY >= 233) {
-      setSticky(true)
-    } else {
-      setSticky(false)
-    }
-  }, 200)
-
   return (
     <div className="w-full lmd:pt-14 lmd:grid lmd:grid-cols-[285px,_1fr] ">
       <div>
@@ -74,13 +63,7 @@ export default function DetailsContentRight({ props }) {
             <h3 className="lmd:hidden p-0 text-left font-semibold text-3xl pb-8">
               Advertiser
             </h3>
-            <div
-              className={`infoPerson p-0  lmd:px-11 py-9 text-center bg-[#F9F9F9] border border-[#D8D8D8] rounded-lg ${
-                sticky
-                  ? 'lmd:sticky lmd:w-[calc(100%+24px)] top-0 block shadow-lg shadow-white'
-                  : `lmd:w-[calc(100%_+_24px)] `
-              }`}
-            >
+            <div className="infoPerson p-0  lmd:px-11 py-9 text-center bg-[#F9F9F9] border border-[#D8D8D8] rounded-lg lmd:w-[calc(100%+24px)]">
               <div className="pb-2 lmd:pb-9">
                 <h2 className="text-center pb-3 capitalize">
                   {props.adDetail && props.adDetail.author}
@@ -125,7 +108,7 @@ export default function DetailsContentRight({ props }) {
                       Chat
                     </span>
                   </div>
-                  <div className="bg-[#eee] shadow-lg lmd:shadow-sm py-3 font-semibold lmd:hidden">
+                  <div className="bg-[#F6F6F6] shadow-inner lmd:shadow-sm py-3 font-semibold lmd:hidden">
                     {props.adDetail && props.adDetail.author}{' '}
                     <span className="font-normal text-2xl">(advertiser)</span>
                   </div>

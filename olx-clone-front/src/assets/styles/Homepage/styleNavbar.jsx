@@ -55,6 +55,12 @@ export const NavBarStyle = styled.nav`
     &.left {
       margin-left: -0.05rem;
       gap: 6rem;
+
+      .index-list-left__menu {
+        .menu {
+          display: none;
+        }
+      }
     }
 
     &.right {
@@ -107,6 +113,20 @@ export const NavBarStyle = styled.nav`
     }
   }
 
+  @media (max-width: 815px) {
+    .index-list-left__menu {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+
+      .menu {
+        display: block !important;
+        font-size: 3.8rem;
+      }
+    }
+  }
+
   @media (max-width: 730px) {
     .notifications {
       display: none;
@@ -126,6 +146,71 @@ export const NavBarStyle = styled.nav`
   @media (max-width: 390px) {
     .chat_icon {
       display: none !important;
+    }
+  }
+`
+
+export const ToggleMenuStyle = styled.aside`
+  position: absolute;
+  top: 7.6rem;
+  left: -50rem;
+  z-index: 99;
+
+  box-shadow: 0 2px 2px #eee;
+
+  transition: 500ms;
+
+  width: 38%;
+  height: 90vh;
+
+  overflow-y: scroll;
+
+  background-color: #fff;
+
+  ul {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+
+    width: 100%;
+
+    border-bottom: 2px solid #eee;
+
+    font-size: 1.6rem;
+    font-weight: 400;
+
+    li {
+      display: flex;
+
+      gap: 1.7rem;
+
+      padding-inline: 1rem;
+      padding-block: 1.2rem;
+    }
+
+    .profile.li-item {
+      width: 100%;
+
+      border-block: 2px solid #eee;
+
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      .profile_span {
+        display: flex;
+        flex-direction: column;
+
+        & .myacc {
+          color: #6e0ad6;
+          font-size: 1.4rem;
+        }
+      }
+    }
+
+    .config {
+      font-size: 1.3637646rem;
     }
   }
 `
