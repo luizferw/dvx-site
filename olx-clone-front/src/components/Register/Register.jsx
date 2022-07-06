@@ -60,10 +60,10 @@ export default function Register() {
   return (
     <div className="register">
       <section className="container rounded-lg shadow-md max-w-[44rem] mx-auto px-10 bg-white py-12 sm:mt-12 sm:px-20 md:mt-24">
-        <div className="mb-8 p-4 text-center ">
+        <div className="mb-8 p-4 text-center">
           <Link to="/">
             <img
-              src="../../assets/dvx-logo.png"
+              src="../../../assets/dvx-logo.png"
               className="w-[6rem] mx-auto  mb-9"
             />
           </Link>
