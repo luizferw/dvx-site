@@ -125,6 +125,10 @@ export const NavBarStyle = styled.nav`
         font-size: 3.8rem;
       }
     }
+
+    .logo {
+      display: none;
+    }
   }
 
   @media (max-width: 730px) {
@@ -160,7 +164,8 @@ export const ToggleMenuStyle = styled.aside`
 
   transition: 500ms;
 
-  width: 38%;
+  width: 30rem;
+
   height: fit-content;
 
   overflow-y: scroll;
@@ -215,5 +220,13 @@ export const ToggleMenuStyle = styled.aside`
     .config {
       font-size: 1.3637646rem;
     }
+  }
+
+  @media (max-width: 620px) {
+    width: 70%;
+  }
+
+  @media (max-width: 500px) {
+    width: 100%;
   }
 `

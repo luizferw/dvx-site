@@ -68,7 +68,7 @@ export default function Login() {
         <div className="mb-8 p-4 text-center ">
           <Link to="/">
             <img
-              src="../../assets/dvx-logo.png"
+              src="../../../src/assets/dvx-logo.png"
               className="w-[6rem] mx-auto  mb-9"
             />
           </Link>

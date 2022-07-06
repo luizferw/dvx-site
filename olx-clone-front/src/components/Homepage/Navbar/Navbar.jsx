@@ -45,9 +45,12 @@ export default function Navbar() {
               >
                 menu
               </span>
-              <figure>
+              <figure className="logo">
                 <Link to="/">
-                  <img src="../../../assets/dvx-logo.png" alt="logo dvx" />
+                  <img
+                    src="../../../../src/assets/dvx-logo.png"
+                    alt="logo dvx"
+                  />
                 </Link>
               </figure>
             </li>

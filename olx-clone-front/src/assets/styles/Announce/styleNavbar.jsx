@@ -18,7 +18,7 @@ export const NavBarStyle = styled.nav`
   }
 
   img {
-    max-width: 4.44rem;
+    max-width: 6.44rem;
   }
 
   li > a {
