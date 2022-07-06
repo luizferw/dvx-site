@@ -20,7 +20,7 @@ export default function Announce() {
           <div className="mb-2 p-4 text-center ">
             <Link to="/">
               <img
-                src="../../assets/dvx-logo.png"
+                src="https://i.ibb.co/VQ09ND8/dvx-logo.png"
                 className="w-[6rem] mx-auto  mb-9"
               />
             </Link>

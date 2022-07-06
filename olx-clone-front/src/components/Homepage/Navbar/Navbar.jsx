@@ -47,7 +47,10 @@ export default function Navbar() {
               </span>
               <figure className="logo">
                 <Link to="/">
-                  <img src="../../../../assets/dvx-logo.png" alt="logo dvx" />
+                  <img
+                    src="https://i.ibb.co/VQ09ND8/dvx-logo.png"
+                    alt="logo dvx"
+                  />
                 </Link>
               </figure>
             </li>

@@ -16,7 +16,10 @@ export default function Navbar() {
             <li>
               <figure>
                 <Link to="/">
-                  <img src="../../../../assets/dvx-logo.png" alt="logo olx" />
+                  <img
+                    src="https://i.ibb.co/VQ09ND8/dvx-logo.png"
+                    alt="logo olx"
+                  />
                 </Link>
               </figure>
             </li>
