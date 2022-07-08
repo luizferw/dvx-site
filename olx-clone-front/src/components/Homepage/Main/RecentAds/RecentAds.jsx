@@ -37,7 +37,7 @@ export default function RecentAds() {
               <AdsItem
                 ads={item}
                 key={index}
-                img={`https://picsum.photos/300`}
+                img={`https://via.placeholder.com/300`}
               />
             )
           })}
