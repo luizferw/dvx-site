@@ -125,10 +125,6 @@ export const NavBarStyle = styled.nav`
         font-size: 3.8rem;
       }
     }
-
-    .logo {
-      display: none;
-    }
   }
 
   @media (max-width: 730px) {
@@ -147,7 +143,7 @@ export const NavBarStyle = styled.nav`
     }
   }
 
-  @media (max-width: 390px) {
+  @media (max-width: 460px) {
     .chat_icon {
       display: none !important;
     }

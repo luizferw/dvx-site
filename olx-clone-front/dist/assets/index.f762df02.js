@@ -190,10 +190,6 @@ Error generating stack: `+l.message+`
         font-size: 3.8rem;
       }
     }
-
-    .logo {
-      display: none;
-    }
   }
 
   @media (max-width: 730px) {
@@ -212,7 +208,7 @@ Error generating stack: `+l.message+`
     }
   }
 
-  @media (max-width: 390px) {
+  @media (max-width: 460px) {
     .chat_icon {
       display: none !important;
     }
