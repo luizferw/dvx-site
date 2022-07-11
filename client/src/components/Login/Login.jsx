@@ -30,13 +30,10 @@ export default function Login() {
     if (email == '') {
       setError('email')
       return
-    }
-    if (password == '') {
+    } else if (password == '') {
       setError('password')
       return
-    }
-
-    if (email && password) {
+    } else if (email && password) {
       if (verifyUser()) {
         logUser()
       }
@@ -53,6 +50,10 @@ export default function Login() {
         if (user.email === email && user.password === password) {
           setUserData(user)
           navigate('/')
+        } else if (user.email === email) {
+          setError('passwordIncorrect')
+        } else {
+          setError('emailIncorrect')
         }
       })
     }
@@ -88,11 +89,16 @@ export default function Login() {
               onChange={e => setEmail(e.target.value)}
               onFocus={() => setActive(false)}
               className={`border border-slate-300 rounded-md py-4 px-6 w-full focus:outline-none focus:border-black ${
-                error === 'email' ? 'border-red-500' : null
+                error === 'email' || error === 'emailIncorrect'
+                  ? 'border-red-500'
+                  : null
               }`}
             ></input>
             {error === 'email' && (
               <span className="text-lg text-red-500">Fill out this field</span>
+            )}
+            {error === 'emailIncorrect' && (
+              <span className="text-lg text-red-500">Invalid email</span>
             )}
           </label>
 
@@ -103,7 +109,11 @@ export default function Login() {
             <div
               className={`input-password flex w-full border rounded-md border-slate-300 ${
                 active ? 'border-black' : null
-              } ${error === 'password' ? 'border-red-500' : null}`}
+              } ${
+                error === 'password' || error === 'passwordIncorrect'
+                  ? 'border-red-500'
+                  : null
+              }`}
             >
               <input
                 type={showPassword ? 'text' : 'password'}
@@ -129,6 +139,9 @@ export default function Login() {
             </div>
             {error === 'password' && (
               <span className="text-lg text-red-500">Fill out this field</span>
+            )}
+            {error === 'passwordIncorrect' && (
+              <span className="text-lg text-red-500">Invalid password</span>
             )}
           </label>
 

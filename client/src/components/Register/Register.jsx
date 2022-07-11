@@ -32,27 +32,20 @@ export default function Register() {
     if (username == '') {
       setError('nickname')
       return
-    }
-    if (email == '') {
+    } else if (email == '') {
       setError('email')
       return
-    }
-    if (password == '') {
+    } else if (password == '') {
       setError('password')
       return
-    }
-
-    if (email && users) {
+    } else if (email) {
       users.forEach(user => {
         if (user.email === email) {
-          console.log(user.email, email)
           setError('emailExists')
           return
         }
       })
-    }
-
-    if (username && email && password && !error) {
+    } else if (username && email && password && error === null) {
       const registerUser = {
         username,
         email,
@@ -79,7 +72,7 @@ export default function Register() {
     }
 
     getUsers()
-  })
+  }, [])
 
   return (
     <div className="register">
