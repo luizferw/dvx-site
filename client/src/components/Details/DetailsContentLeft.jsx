@@ -55,6 +55,23 @@ export default function DetailsContentLeft({ props }) {
         <span className="text-lg ">
           {props.adDetail && props.adDetail.category}
         </span>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          width="14px"
+          height="14px"
+          color="#4A4A4A"
+          size="24"
+        >
+          <path
+            fill="#4A4A4A"
+            fillRule="evenodd"
+            d="M9.47 17.47a.75.75 0 001.06 1.06l6-6a.75.75 0 000-1.06l-6-6a.75.75 0 00-1.06 1.06L14.94 12l-5.47 5.47z"
+          ></path>
+        </svg>
+        <span className="text-lg ">
+          {props.adDetail && props.adDetail.sub_category}
+        </span>
       </div>
 
       <div className="info text-left">

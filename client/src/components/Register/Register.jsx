@@ -1,14 +1,17 @@
+import { useEffect } from 'react'
 import { useContext, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { User } from '../../App'
 
 export default function Register() {
   const { setLogged, setUserData } = useContext(User)
+  const [users, setUsers] = useState('')
+
   const [username, setUsername] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
-  const [error, setError] = useState('')
+  const [error, setError] = useState(null)
 
   const [active, setActive] = useState(false)
   const [showPassword, setShowPassword] = useState(false)
@@ -23,7 +26,8 @@ export default function Register() {
   }
 
   const navigate = useNavigate()
-  function handleSubmit(e) {
+
+  async function handleSubmit(e) {
     e.preventDefault()
     if (username == '') {
       setError('nickname')
@@ -38,7 +42,17 @@ export default function Register() {
       return
     }
 
-    if (username && email && password) {
+    if (email && users) {
+      users.forEach(user => {
+        if (user.email === email) {
+          console.log(user.email, email)
+          setError('emailExists')
+          return
+        }
+      })
+    }
+
+    if (username && email && password && !error) {
       const registerUser = {
         username,
         email,
@@ -56,6 +70,16 @@ export default function Register() {
       })
     }
   }
+
+  useEffect(() => {
+    async function getUsers() {
+      const response = await fetch('https://dvx-site.herokuapp.com/api/users')
+      const users = await response.json()
+      setUsers(users)
+    }
+
+    getUsers()
+  })
 
   return (
     <div className="register">
@@ -113,6 +137,9 @@ export default function Register() {
             ></input>
             {error === 'email' && (
               <span className="text-lg text-red-500">Fill out this field</span>
+            )}
+            {error === 'emailExists' && (
+              <span className="text-lg text-red-500">Email already exists</span>
             )}
           </label>
 

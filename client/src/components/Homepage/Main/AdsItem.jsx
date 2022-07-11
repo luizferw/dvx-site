@@ -2,10 +2,11 @@ import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { AdsItemStyle } from '../../../assets/styles/Homepage/styleMain'
 
-export default function AdsItem({ ads, minWidth, img }) {
+export default function AdsItem({ ads, minWidth }) {
   const [title, setTitle] = useState('')
   const [city, setCity] = useState('')
   const [category, setCategory] = useState('')
+  const [sub_category, setSub_Category] = useState('')
   let priceDotted = null
 
   ads ? (priceDotted = addDots(ads.price)) : null
@@ -44,6 +45,15 @@ export default function AdsItem({ ads, minWidth, img }) {
 
       setCategory(
         ads.category
+          .toLowerCase()
+          .trim()
+          .replace(/[^\w\s-]/g, '')
+          .replace(/[\s_-]+/g, '-')
+          .replace(/^-+|-+$/g, '')
+      )
+
+      setSub_Category(
+        ads.sub_category
           .toLowerCase()
           .trim()
           .replace(/[^\w\s-]/g, '')

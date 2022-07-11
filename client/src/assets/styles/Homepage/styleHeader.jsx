@@ -118,6 +118,10 @@ export const CategoryMenuStyle = styled.div`
       width: 7rem;
 
       margin: 0.7rem auto;
+
+      &::selection {
+        background: none;
+      }
     }
 
     li span {
