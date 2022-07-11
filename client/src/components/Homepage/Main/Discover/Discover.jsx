@@ -2,7 +2,7 @@ import { DiscoverStyle } from '../../../../assets/styles/Homepage/styleMain'
 import { ContainerSmall } from '../../../../assets/styles/styleUtils'
 
 import { useContext } from 'react'
-import { Ads } from '../../../App'
+import { Ads } from '../../../../App'
 
 export default function Discover() {
   const { setFilterByCategory } = useContext(Ads)
