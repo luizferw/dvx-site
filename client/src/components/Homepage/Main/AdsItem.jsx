@@ -17,7 +17,7 @@ export default function AdsItem({ ads, minWidth, img }) {
     let x2 = x.length > 1 ? '.' + x[1] : ''
     var rgx = /(\d+)(\d{3})/
     while (rgx.test(x1)) {
-      x1 = x1.replace(rgx, '$1' + '.' + '$2') // changed comma to dot here
+      x1 = x1.replace(rgx, '$1' + '.' + '$2')
     }
     return x1 + x2
   }
@@ -56,7 +56,15 @@ export default function AdsItem({ ads, minWidth, img }) {
   return (
     <AdsItemStyle minWidth={minWidth} key={ads._id}>
       <Link to={`/${city}/${category}/${title}-${ads._id}`}>
-        <img className="item-img" src={img} />
+        {ads.image ? (
+          <img className="item-img" src={`/images/${ads.image}`} />
+        ) : (
+          <img
+            className="item-img"
+            src="https://greenvolt.com.br/wp-content/uploads/2018/05/ef3-placeholder-image.jpg"
+          />
+        )}
+
         <h3 className="item-title">{ads.title}</h3>
         <span className="item-price">$ {priceDotted}</span>
       </Link>

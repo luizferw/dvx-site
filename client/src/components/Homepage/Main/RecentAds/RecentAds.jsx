@@ -12,13 +12,7 @@ export default function RecentAds() {
       <div className="recent-items">
         {ads &&
           ads.map((item, index) => {
-            return (
-              <AdsItem
-                ads={item}
-                key={index}
-                img={`https://via.placeholder.com/300`}
-              />
-            )
+            return <AdsItem ads={item} key={index} />
           })}
       </div>
     </RecentAdsStyle>

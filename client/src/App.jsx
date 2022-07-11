@@ -75,6 +75,7 @@ export default function App() {
               <Route path="/register" element={<RegisterPage />} />
               <Route path="/login" element={<LoginPage />} />
               <Route path="/announce" element={<Announce />} />
+              <Route path="/announce/:id" element={<Announce />} />
             </Routes>
           </Ads.Provider>
         </div>

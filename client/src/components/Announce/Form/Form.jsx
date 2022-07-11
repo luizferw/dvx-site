@@ -1,8 +1,10 @@
-import { useContext, useMemo, useState, createContext } from 'react'
+import { useContext, useMemo, useState, createContext, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { User } from '../../../App'
 import { FormStyle } from '../../../assets/styles/Announce/styleForm'
 import CategoryContainer from './CategoryContainer'
+import axios from 'axios'
+import { v4 as uuid } from 'uuid'
 
 export const CategoryContext = createContext('')
 
@@ -11,8 +13,11 @@ export default function Form() {
   const author = userData.username
   const userPhone = userData.phone ? userData.phone : false
   const [title, setTitle] = useState('')
+  const [id, setId] = useState('')
   const [description, setDescription] = useState('')
   const [active, setActive] = useState('')
+  const [file, setFile] = useState(null)
+  const [image, setImage] = useState('')
   let [price, setPrice] = useState('')
   let [cep, setCep] = useState('')
   const [hidePhone, setHidePhone] = useState(false)
@@ -20,7 +25,6 @@ export default function Form() {
 
   const [error, setError] = useState('')
   const [loadingSubmit, setLoadingSubmit] = useState(false)
-  const [files, setFiles] = useState([])
   const navigate = useNavigate()
 
   const value = useMemo(() => {
@@ -35,21 +39,19 @@ export default function Form() {
     }
   }
 
-  const handleImage = e => {
+  const saveFile = e => {
+    e.preventDefault()
+
     const file = e.target.files[0]
-    if (file) {
-      let blob = file.slice(0, file.size, 'image/png')
-      let newFile = new File([blob], `id1234.png`, { type: 'image/png' })
+    setFile(file)
 
-      let formData = new FormData()
+    const fileExtension = file.type.split('/')[1]
+    const formData = new FormData()
+    formData.append('file', file)
 
-      formData.append('file', newFile)
-
-      fetch('https://dvx-site.herokuapp.com/api/upload', {
-        method: 'POST',
-        body: formData
-      }).then(console.log('success'))
-    }
+    axios
+      .post(`http://localhost:4000/upload/${id}`, formData)
+      .then(() => setImage(id + '.' + fileExtension))
   }
 
   const handlePrice = e => {
@@ -67,8 +69,10 @@ export default function Form() {
   }
 
   const handleSubmit = async e => {
-    const sub_category = active
     e.preventDefault()
+
+    const sub_category = active
+
     setTimeout(() => {
       setLoadingSubmit(false)
     }, 4000)
@@ -86,17 +90,14 @@ export default function Form() {
       setError('title')
       return
     }
-
     if (category == null) {
       setError('category')
       return
     }
-
     if (price == '') {
       setError('price')
       return
     }
-
     if (address && address.district == null) {
       setError('localization')
       return
@@ -105,6 +106,7 @@ export default function Form() {
     setError(null)
 
     const ads = {
+      id,
       price,
       description,
       address,
@@ -112,7 +114,8 @@ export default function Form() {
       hidePhone,
       category,
       sub_category,
-      author
+      author,
+      image
     }
 
     fetch('https://dvx-site.herokuapp.com/api/ads/announce', {
@@ -130,9 +133,11 @@ export default function Form() {
     setHidePhone(false)
   }
 
+  useEffect(() => setId(uuid()), [])
+
   return (
     <CategoryContext.Provider value={value}>
-      <FormStyle onSubmit={e => handleSubmit(e)}>
+      <FormStyle onSubmit={e => handleSubmit(e)} autoComplete="off" noValidate>
         <h2>What are you announcing?</h2>
 
         <div className="form-container" id="title">
@@ -143,7 +148,6 @@ export default function Form() {
             className={error === 'title' ? 'title error' : 'title'}
             type="text"
             maxLength="65"
-            autoComplete="off"
             value={title}
             onChange={e => setTitle(e.target.value)}
             placeholder="Title"
@@ -153,7 +157,6 @@ export default function Form() {
             type="textarea"
             className="description h-52"
             maxLength="600"
-            autoComplete="off"
             value={description}
             onChange={e => setDescription(e.target.value)}
             placeholder="Description"
@@ -174,7 +177,6 @@ export default function Form() {
               className={error === 'price' ? 'price error' : 'price'}
               type="text"
               id="price"
-              autoComplete="off"
               maxLength="7"
               value={price}
               onChange={e => handlePrice(e)}
@@ -183,18 +185,15 @@ export default function Form() {
 
             <div className="add-photo">
               <h4>Photos</h4>
-              <p>
-                Add up to <strong>6 photos</strong>
-              </p>
               <div className="image-container">
                 <label>
                   <input
                     type="file"
+                    name="image"
                     accept=".jpg, .jpeg, .png, .gif"
+                    onChange={e => saveFile(e)}
                     multiple
                     hidden
-                    files={files}
-                    onChange={e => handleImage(e)}
                   />
                   <span className="box-icon">
                     <svg
@@ -215,9 +214,11 @@ export default function Form() {
                     <strong>Add photos</strong>
                   </span>
                   <span className="box-format">JPG, JPEG and PNG only</span>
+                  {image && <span className="box-format">Photo added</span>}
                 </label>
               </div>
             </div>
+
             <h4>Localization</h4>
             {error === 'localization' && (
               <span className="error">Address invalid</span>
@@ -271,6 +272,7 @@ export default function Form() {
             )}
           </div>
         </div>
+
         <a
           href={`#${error}`}
           className="submit-link flex flex-col"

@@ -69,10 +69,17 @@ export default function DetailsContentLeft({ props }) {
       </div>
 
       <div className="image mt-4 bg-[#E5E5E5] lmd:bg-white">
-        <img
-          src="https://via.placeholder.com/950"
-          className="rounded-xl  h-[350px] sm:w-full md:px-30 md:px-64 lmd:w-[89%] lmd:h-[380px] lmd:p-0 "
-        ></img>
+        {props.adDetail && props.adDetail.image ? (
+          <img
+            src={`/images/${props.adDetail.image}`}
+            className="rounded-xl  h-[350px] sm:w-full md:px-30 md:px-64 lmd:w-[89%] lmd:h-[380px] lmd:p-0 "
+          ></img>
+        ) : (
+          <img
+            src="https://greenvolt.com.br/wp-content/uploads/2018/05/ef3-placeholder-image.jpg"
+            className="rounded-xl  h-[350px] sm:w-full md:px-30 md:px-64 lmd:w-[89%] lmd:h-[380px] lmd:p-0 "
+          ></img>
+        )}
       </div>
 
       <div className="options text-left mt-8 px-10 lmd:px-0">

@@ -1,11 +1,18 @@
 import { useContext } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import { User } from '../App'
 import Form from '../components/Announce/Form/Form'
 import Navbar from '../components/Announce/Navbar/Navbar'
 
 export default function Announce() {
   const { userData } = useContext(User)
+  const { id } = useParams()
+
+  // useEffect(() => {
+  //   if (id) {
+  //     fetch(`http://localhost:4000/upload/${id}`)
+  //   }
+  // })
 
   return (
     <div className="Announce overflow-auto">
