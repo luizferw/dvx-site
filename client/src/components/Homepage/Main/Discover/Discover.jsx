@@ -1,7 +1,12 @@
 import { DiscoverStyle } from '../../../../assets/styles/Homepage/styleMain'
 import { ContainerSmall } from '../../../../assets/styles/styleUtils'
 
+import { useContext } from 'react'
+import { Ads } from '../../../App'
+
 export default function Discover() {
+  const { setFilterByCategory } = useContext(Ads)
+
   return (
     <DiscoverStyle>
       <ContainerSmall>
@@ -9,7 +14,10 @@ export default function Discover() {
           <h2>Discover</h2>
         </div>
         <div className="grid-container">
-          <div className="grid-item hands">
+          <div
+            className="grid-item hands"
+            onClick={() => setFilterByCategory('Jobs')}
+          >
             <ul>
               <li>Discover our plans</li>
               <li>Professional plans</li>
@@ -17,14 +25,20 @@ export default function Discover() {
           </div>
 
           <div className="grid-container-half">
-            <div className="grid-item house">
+            <div
+              className="grid-item house"
+              onClick={() => setFilterByCategory('Properties')}
+            >
               <ul>
                 <li>Want to rent or sell?</li>
                 <li>Houses and apartments</li>
               </ul>
             </div>
 
-            <div className="grid-item phone">
+            <div
+              className="grid-item phone"
+              onClick={() => setFilterByCategory('Electronics and smartphones')}
+            >
               <ul>
                 <li>Get rid of your used</li>
                 <li>Sell your smartphone</li>
@@ -32,7 +46,10 @@ export default function Discover() {
             </div>
           </div>
 
-          <div className="grid-container-half-middle">
+          <div
+            className="grid-container-half-middle"
+            onClick={() => setFilterByCategory('Electronics and smartphones')}
+          >
             <div className="grid-item videogame">
               <ul>
                 <li>Electronics and Smartphones</li>
@@ -40,7 +57,10 @@ export default function Discover() {
               </ul>
             </div>
 
-            <div className="grid-item car">
+            <div
+              className="grid-item car"
+              onClick={() => setFilterByCategory('Cars and parts')}
+            >
               <ul>
                 <li>Auto and parts</li>
                 <li>Change car</li>
@@ -49,14 +69,20 @@ export default function Discover() {
           </div>
 
           <div className="grid-container-half right">
-            <div className="grid-item car-key">
+            <div
+              className="grid-item car-key"
+              onClick={() => setFilterByCategory('Cars and parts')}
+            >
               <ul>
                 <li>Financing</li>
                 <li>See the opportunities</li>
               </ul>
             </div>
 
-            <div className="grid-item people">
+            <div
+              className="grid-item people"
+              onClick={() => setFilterByCategory(null)}
+            >
               <ul>
                 <li>OLX Pay</li>
                 <li>A new way to sell</li>
