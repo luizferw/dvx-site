@@ -3,15 +3,12 @@ const cors = require('cors')
 const multer = require('multer')
 const { Storage } = require('@google-cloud/storage')
 const mongoose = require('mongoose')
-const indexGet = require('./controllers/indexController')
-const anuncioRoutes = require('./routes/anuncioRoutes')
-const publicarRoutes = require('./routes/publicarRoutes')
-const {
-  registerUser,
-  listUsers,
-  getUser
-} = require('./controllers/registerController')
 const path = require('path')
+
+const Ads = require('./models/ads')
+
+const adRoutes = require('./routes/adRoutes')
+const usersRoutes = require('./routes/usersRoutes')
 
 const app = express()
 require('dotenv').config()
@@ -57,30 +54,23 @@ app.use(express.urlencoded({ extended: true }))
 
 app.use(cors())
 
-app.use(express.static(path.join(__dirname, '/olx-clone-front/dist')))
+app.use(express.static(path.join(__dirname, '/client/dist')))
 
-app.use('/api/ads', anuncioRoutes)
-app.use('/api/announce', publicarRoutes)
-app.post('/api/register', registerUser)
-app.get('/api/users', listUsers)
-app.get('/api/users/:id', getUser)
-
-app.post('/api/upload', multerMid.single('file'), async (req, res) => {
+app.get('/api/ads/category/:query', async (req, res) => {
   try {
-    if (req.file) {
-      const blob = bucket.file(req.file.originalname)
-      const blobStream = blob.createWriteStream()
+    const category = req.params.query
 
-      blobStream.on('finish', () => {
-        res.status(200).send('success')
-      })
-      console.log(req.file)
-    }
-  } catch {}
+    const filterData = await Ads.find({ sub_category: category })
+
+    res.json(filterData)
+  } catch (e) {
+    console.log(e)
+  }
 })
 
-app.use('/api', indexGet)
+app.use('/api/ads', adRoutes)
+app.use('/api/users', usersRoutes)
 
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '/olx-clone-front/dist', 'index.html'))
+  res.sendFile(path.join(__dirname, '/client/dist', 'index.html'))
 })

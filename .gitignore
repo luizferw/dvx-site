@@ -1,2 +1,4 @@
 /node_modules
-olx-clone-front/node_modules
+client/node_modules
+.env
+.gitignore

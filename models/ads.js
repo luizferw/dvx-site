@@ -32,6 +32,10 @@ const adsSchema = new Schema(
       type: String,
       required: true
     },
+    sub_category: {
+      type: String,
+      required: true
+    },
     author: {
       type: String,
       required: true
