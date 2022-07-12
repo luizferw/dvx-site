@@ -50,7 +50,7 @@ export default function Form() {
     formData.append('file', file)
 
     axios
-      .post(`https://dvx-site.herokuapp.com/upload/${id}`, formData)
+      .post(`https://dvx-site.herokuapp.com/api/ads/upload/${id}`, formData)
       .then(() => setImage(id + '.' + fileExtension))
   }
 

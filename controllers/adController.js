@@ -1,4 +1,5 @@
 const Ads = require('../models/ads')
+const fs = require('fs')
 
 const adAll = async (req, res) => {
   try {
@@ -6,6 +7,17 @@ const adAll = async (req, res) => {
     res.json(data)
   } catch (err) {
     console.log(err)
+  }
+}
+
+const adSearch = async (req, res) => {
+  const query = req.params.query
+
+  try {
+    const filterData = await Ads.find({ title: query })
+    res.json(filterData)
+  } catch (e) {
+    console.log(e)
   }
 }
 
@@ -54,10 +66,29 @@ const adPublish = async (req, res) => {
   }
 }
 
+const imageUpload = (req, res) => {
+  if (req.file) {
+    const id = req.params.id
+    const ext = req.file.mimetype.split('/')[1]
+
+    fs.rename(
+      `../client/public/images/${req.file.filename}`,
+      `../client/public/images/${id}.${ext}`,
+      e => (e ? console.log(e) : null)
+    )
+
+    res.send()
+  }
+
+  res.send().status(404)
+}
+
 module.exports = {
   adDetail,
   adDelete,
   adPublish,
   adFilterByCategory,
+  adSearch,
+  imageUpload,
   adAll
 }

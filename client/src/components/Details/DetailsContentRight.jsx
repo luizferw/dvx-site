@@ -1,6 +1,26 @@
+import { format, parseISO } from 'date-fns'
+import { useState } from 'react'
+import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 
 export default function DetailsContentRight({ props }) {
+  const [createdAt, setCreatedAt] = useState('')
+
+  useEffect(() => {
+    if (props.adDetail) {
+      fetch(
+        `https://dvx-site.herokuapp.com:4000/api/users/author/${props.adDetail.author}`
+      )
+        .then(res => res.json())
+        .then(data => {
+          if (data[0].createdAt) {
+            const date = format(parseISO(data[0].createdAt), 'MM/dd')
+            setCreatedAt(date)
+          }
+        })
+    }
+  }, [props.adDetail])
+
   return (
     <div className="w-full lmd:pt-14 lmd:grid lmd:grid-cols-[285px,_1fr] ">
       <div>
@@ -169,9 +189,11 @@ export default function DetailsContentRight({ props }) {
                   </span>
                 </div>
                 <div className="flex flex-col gap-5 pt-1 justify-center items-center">
-                  <span className="block text-lg opacity-70">
-                    On OLX since {''}
-                  </span>
+                  {createdAt && (
+                    <span className="block text-lg opacity-70">
+                      On OLX since {createdAt}
+                    </span>
+                  )}
                   <Link to="/">
                     <span className="flex items-center gap-2 text-purple-700 font-semibold text-lg">
                       <svg width="16" height="16" viewBox="0 0 16 16">

@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { createContext, useEffect, useState } from 'react'
 import { useMemo } from 'react'
 import DetailsPage from './pages/DetailsPage'
+import NotFound from './pages/NotFound'
 
 export const User = createContext(null)
 export const Ads = createContext('')
@@ -13,6 +14,7 @@ export const Ads = createContext('')
 export default function App() {
   const [ads, setAds] = useState(null)
   const [filterByCategory, setFilterByCategory] = useState(null)
+  const [filterBySearch, setFilterBySearch] = useState(null)
 
   const userSaved = localStorage.getItem('user')
   const loggedSaved = localStorage.getItem('logged')
@@ -39,9 +41,11 @@ export default function App() {
       ads,
       setAds,
       filterByCategory,
-      setFilterByCategory
+      setFilterByCategory,
+      filterBySearch,
+      setFilterBySearch
     }
-  }, [ads, filterByCategory])
+  }, [ads, filterByCategory, filterBySearch])
 
   useEffect(() => {
     const fetchData = async () => {
@@ -51,15 +55,21 @@ export default function App() {
         )
         const data = await response.json()
         setAds(data)
+      } else if (filterBySearch) {
+        const response = await fetch(
+          `https://dvx-site.herokuapp.com/api/ads/search/${filterBySearch}`
+        )
+        const data = await response.json()
+        setAds(data)
       } else {
-        const response = await fetch('https://dvx-site.herokuapp.com/api/ads/')
+        const response = await fetch('https://dvx-site.herokuapp.com/api/ads')
         const data = await response.json()
         setAds(data)
       }
     }
 
     fetchData()
-  }, [filterByCategory])
+  }, [filterByCategory, filterBySearch])
 
   return (
     <BrowserRouter>
@@ -67,6 +77,7 @@ export default function App() {
         <div className="App">
           <Ads.Provider value={AdsValue}>
             <Routes>
+              <Route path="*" element={<NotFound />} />
               <Route path="/" element={<Homepage />} />
               <Route
                 path="/:city/:category/:title-:id"

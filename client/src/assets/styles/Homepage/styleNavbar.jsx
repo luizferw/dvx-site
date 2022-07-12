@@ -187,7 +187,7 @@ export const ToggleMenuStyle = styled.aside`
       gap: 1.7rem;
 
       padding-inline: 1rem;
-      padding-block: 1.2rem;
+      padding-block: 2.2rem;
     }
 
     .profile.li-item {

@@ -2,8 +2,6 @@ require('dotenv').config()
 const express = require('express')
 const cors = require('cors')
 const path = require('path')
-const multer = require('multer')
-const fs = require('fs')
 
 const mongoose = require('mongoose')
 
@@ -33,34 +31,9 @@ app.set('view engine', 'ejs')
 app.use(express.static('public'))
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
-
-app.use(cors())
-
 app.use(express.static(path.join(__dirname, '/client/dist')))
 
-const upload = multer({
-  dest: './client/public/images/',
-  limits: {
-    fileSize: 4 * 1024 * 1024
-  }
-})
-
-app.post('/upload/:id', upload.single('file'), (req, res) => {
-  if (req.file) {
-    const id = req.params.id
-    const ext = req.file.mimetype.split('/')[1]
-
-    fs.rename(
-      `./client/public/images/${req.file.filename}`,
-      `./client/public/images/${id}.${ext}`,
-      e => (e ? console.log(e) : null)
-    )
-
-    res.send()
-  }
-
-  res.send().status(404)
-})
+app.use(cors())
 
 app.use('/api/ads', adRoutes)
 app.use('/api/users', usersRoutes)

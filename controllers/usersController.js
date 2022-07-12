@@ -20,7 +20,7 @@ const usersAll = async (req, res) => {
   }
 }
 
-const getUser = async (req, res) => {
+const getUserById = async (req, res) => {
   const id = req.params.id
 
   try {
@@ -31,8 +31,20 @@ const getUser = async (req, res) => {
   }
 }
 
+const getUserByUsername = async (req, res) => {
+  const username = req.params.username
+
+  try {
+    const author = await User.find({ username: username })
+    res.json(author)
+  } catch (e) {
+    console.log(e)
+  }
+}
+
 module.exports = {
   registerUser,
   usersAll,
-  getUser
+  getUserById,
+  getUserByUsername
 }
