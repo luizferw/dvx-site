@@ -191,7 +191,7 @@ export default function Form() {
                     type="file"
                     name="image"
                     accept=".jpg, .jpeg, .png, .gif"
-                    onChange={e => saveFile(e)}
+                    // onChange={e => saveFile(e)}
                     multiple
                     hidden
                   />
