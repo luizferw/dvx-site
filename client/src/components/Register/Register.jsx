@@ -11,7 +11,7 @@ export default function Register() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
-  const [error, setError] = useState(null)
+  const [error, setError] = useState(true)
 
   const [active, setActive] = useState(false)
   const [showPassword, setShowPassword] = useState(false)
@@ -29,23 +29,44 @@ export default function Register() {
 
   async function handleSubmit(e) {
     e.preventDefault()
-    if (username == '') {
-      setError('nickname')
-      return
-    } else if (email == '') {
-      setError('email')
-      return
-    } else if (password == '') {
-      setError('password')
-      return
-    } else if (email) {
+
+    function verifyBlankSpaces() {
+      if (username == '') {
+        setError('nickname')
+        return false
+      } else if (email == '') {
+        setError('email')
+
+        return false
+      } else if (password == '') {
+        setError('password')
+
+        return false
+      } else if (username && email && password) {
+        setError(null)
+        return true
+      }
+    }
+
+    function verifyEmail() {
       users.forEach(user => {
         if (user.email === email) {
           setError('emailExists')
-          return
+          return false
+        } else {
+          setError(false)
         }
       })
-    } else if (username && email && password && error === null) {
+    }
+
+    verifyBlankSpaces()
+    verifyEmail()
+
+    if (!error) {
+      registerUser()
+    }
+
+    function registerUser() {
       const registerUser = {
         username,
         email,
