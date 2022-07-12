@@ -3,8 +3,8 @@ import { useNavigate } from 'react-router-dom'
 import { User } from '../../../App'
 import { FormStyle } from '../../../assets/styles/Announce/styleForm'
 import CategoryContainer from './CategoryContainer'
-import axios from 'axios'
-import { v4 as uuid } from 'uuid'
+// import axios from 'axios'
+// import { v4 as uuid } from 'uuid'
 
 export const CategoryContext = createContext('')
 
@@ -16,7 +16,7 @@ export default function Form() {
   const [id, setId] = useState('')
   const [description, setDescription] = useState('')
   const [active, setActive] = useState('')
-  const [file, setFile] = useState(null)
+  // const [file, setFile] = useState(null)
   const [image, setImage] = useState('')
   let [price, setPrice] = useState('')
   let [cep, setCep] = useState('')
@@ -39,20 +39,20 @@ export default function Form() {
     }
   }
 
-  const saveFile = e => {
-    e.preventDefault()
+  // const saveFile = e => {
+  //   e.preventDefault()
 
-    const file = e.target.files[0]
-    setFile(file)
+  //   const file = e.target.files[0]
+  //   setFile(file)
 
-    const fileExtension = file.type.split('/')[1]
-    const formData = new FormData()
-    formData.append('file', file)
+  //   const fileExtension = file.type.split('/')[1]
+  //   const formData = new FormData()
+  //   formData.append('file', file)
 
-    axios
-      .post(`https://dvx-site.herokuapp.com/api/ads/upload/${id}`, formData)
-      .then(() => setImage(id + '.' + fileExtension))
-  }
+  //   axios
+  //     .post(`https://dvx-site.herokuapp.com/api/ads/upload/${id}`, formData)
+  //     .then(() => setImage(id + '.' + fileExtension))
+  // }
 
   const handlePrice = e => {
     if (!isNaN(e.target.value)) {
@@ -133,7 +133,7 @@ export default function Form() {
     setHidePhone(false)
   }
 
-  useEffect(() => setId(uuid()), [])
+  // useEffect(() => setId(uuid()), [])
 
   return (
     <CategoryContext.Provider value={value}>
