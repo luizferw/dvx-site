@@ -19,6 +19,6 @@ The following tools were used in building the project:
 - [NodeJs](https://nodejs.org/en/)
 
 
-## ✅ Status do Projeto
+## ✅ Status
 
 🚧  🚀 Under construction...  🚧
