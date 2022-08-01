@@ -1,6 +1,7 @@
 import { useContext } from 'react'
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
+import { axiosInstance as axios } from '../../../libs/axios'
 import { User } from '../../App'
 
 export default function Login() {
@@ -39,8 +40,8 @@ export default function Login() {
       }
     }
     async function getUsers() {
-      const response = await fetch('https://dvx-site.herokuapp.com/api/users')
-      const users = await response.json()
+      const response = await axios.get('/users')
+      const users = response.data
       return users
     }
 

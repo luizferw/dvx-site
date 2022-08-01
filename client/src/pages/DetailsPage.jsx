@@ -1,6 +1,7 @@
 import { format, parseISO } from 'date-fns'
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
+import { axiosInstance as axios } from '../../libs/axios'
 import DetailsContentLeft from '../components/Details/DetailsContentLeft'
 import DetailsContentRight from '../components/Details/DetailsContentRight'
 import Footer from '../components/Homepage/Footer/Footer'
@@ -14,21 +15,24 @@ export default function DetailsPage() {
   const [priceDotted, setPriceDotted] = useState('')
 
   useEffect(() => {
-    fetch(`https://dvx-site.herokuapp.com/api/ads/${id}`)
-      .then(response => response.json())
-      .then(data => {
-        setAdDetail(data)
+    async function fetchData() {
+      const response = await axios.get(`/ads/${id}`)
+      setAdDetail(response.data)
 
-        const date = format(parseISO(data.createdAt), 'dd/MM')
-        const hour = format(parseISO(data.createdAt), 'HH:mm')
-        setCreatedAt({ date, hour })
+      const date = format(parseISO(response.data.createdAt), 'dd/MM')
+      const hour = format(parseISO(response.data.createdAt), 'HH:mm')
+      setCreatedAt({ date, hour })
 
-        setPriceDotted(addDots(data.price))
+      setPriceDotted(addDots(response.data.price))
 
-        data.price.length <= 4
-          ? setDividedPrice((data.price / 12 + data.price * 0.1).toFixed(2))
-          : null
-      })
+      response.data.price.length <= 4
+        ? setDividedPrice(
+            (response.data.price / 12 + response.data.price * 0.1).toFixed(2)
+          )
+        : null
+    }
+
+    fetchData()
   }, [id])
 
   function addDots(nStr) {

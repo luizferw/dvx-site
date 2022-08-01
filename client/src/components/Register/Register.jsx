@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import { useContext, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
+import { axiosInstance as axios } from '../../../libs/axios'
 import { User } from '../../App'
 
 export default function Register() {
@@ -73,22 +74,22 @@ export default function Register() {
         password
       }
 
-      fetch('https://dvx-site.herokuapp.com/api/users/register', {
-        method: 'POST',
-        headers: { 'Content-type': 'application/json' },
-        body: JSON.stringify(registerUser)
-      }).then(() => {
-        setLogged(true)
-        setUserData(registerUser)
-        navigate('/')
-      })
+      axios
+        .post('/users/register', {
+          data: registerUser
+        })
+        .then(() => {
+          setLogged(true)
+          setUserData(registerUser)
+          navigate('/')
+        })
     }
   }
 
   useEffect(() => {
     async function getUsers() {
-      const response = await fetch('https://dvx-site.herokuapp.com/api/users')
-      const users = await response.json()
+      const response = await axios.get('/users')
+      const users = response.data
       setUsers(users)
     }
 

@@ -2,23 +2,25 @@ import { format, parseISO } from 'date-fns'
 import { useState } from 'react'
 import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
+import { axiosInstance as axios } from '../../../libs/axios'
 
 export default function DetailsContentRight({ props }) {
   const [createdAt, setCreatedAt] = useState('')
 
   useEffect(() => {
-    if (props.adDetail) {
-      fetch(
-        `https://dvx-site.herokuapp.com:4000/api/users/author/${props.adDetail.author}`
-      )
-        .then(res => res.json())
-        .then(data => {
-          if (data[0].createdAt) {
-            const date = format(parseISO(data[0].createdAt), 'MM/dd')
-            setCreatedAt(date)
-          }
-        })
+    async function createdAt() {
+      if (props.adDetail) {
+        const response = await axios.get(
+          `/users/author/${props.adDetail.author}`
+        )
+        if (response.data[0]) {
+          const date = format(parseISO(response.data[0].createdAt), 'MM/dd')
+          setCreatedAt(date)
+        }
+      }
     }
+
+    createdAt()
   }, [props.adDetail])
 
   return (

@@ -1,16 +1,11 @@
 {
   "name": "dvx-site",
   "version": "1.0.0",
-  "engines": {
-    "npm": "8.12.1",
-    "node": "14.19.1"
-  },
   "description": "",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node app.js",
-    "run_build-script": "npm i; cd client/; npm i; npm run build; cd ..; git add .;"
+    "api": "nodemon index.js"
   },
   "repository": {
     "type": "git",
@@ -25,7 +20,6 @@
   "dependencies": {
     "cors": "^2.8.5",
     "dotenv": "^16.0.1",
-    "ejs": "^3.1.8",
     "express": "^4.18.1",
     "mongoose": "^6.3.6",
     "multer": "^1.4.5-lts.1",

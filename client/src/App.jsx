@@ -7,6 +7,7 @@ import { createContext, useEffect, useState } from 'react'
 import { useMemo } from 'react'
 import DetailsPage from './pages/DetailsPage'
 import NotFound from './pages/NotFound'
+import { axiosInstance as axios } from '../libs/axios'
 
 export const User = createContext(null)
 export const Ads = createContext('')
@@ -50,21 +51,14 @@ export default function App() {
   useEffect(() => {
     const fetchData = async () => {
       if (filterByCategory) {
-        const response = await fetch(
-          `https://dvx-site.herokuapp.com/api/ads/category/${filterByCategory}`
-        )
-        const data = await response.json()
-        setAds(data)
+        const response = await axios.get(`/ads/category/${filterByCategory}`)
+        setAds(response.data)
       } else if (filterBySearch) {
-        const response = await fetch(
-          `https://dvx-site.herokuapp.com/api/ads/search/${filterBySearch}`
-        )
-        const data = await response.json()
-        setAds(data)
+        const response = await axios.get(`/ads/search/${filterBySearch}`)
+        setAds(response.data)
       } else {
-        const response = await fetch('https://dvx-site.herokuapp.com/api/ads')
-        const data = await response.json()
-        setAds(data)
+        const response = await axios.get('/ads')
+        setAds(response.data)
       }
     }
 
