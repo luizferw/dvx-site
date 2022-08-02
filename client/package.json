@@ -2,10 +2,6 @@
   "name": "olx-clone-front",
   "private": true,
   "version": "1.0.0",
-  "engines": {
-    "npm": "8.12.1",
-    "node": "14.19.1"
-  },
   "scripts": {
     "dev": "vite",
     "build": "vite build",
