@@ -27,7 +27,11 @@ const getUserById = async (req, res) => {
     const data = await User.findById(id)
     res.json(data)
   } catch (e) {
-    console.log(e)
+    if (e.name !== 'CastError') {
+      console.log(e)
+      res.status(404).end()
+    }
+    res.status(200).end()
   }
 }
 
@@ -38,7 +42,11 @@ const getUserByUsername = async (req, res) => {
     const author = await User.find({ username: username })
     res.json(author)
   } catch (e) {
-    console.log(e)
+    if (e.name !== 'CastError') {
+      console.log(e)
+      res.status(404).end()
+    }
+    res.status(200).end()
   }
 }
 

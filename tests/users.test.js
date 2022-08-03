@@ -1,7 +1,7 @@
 const Server = require('../server')
 const request = require('supertest')
 
-jest.setTimeout(10000)
+jest.setTimeout(5000)
 
 describe('Users', () => {
   const server = new Server()
