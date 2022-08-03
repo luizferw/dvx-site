@@ -1,5 +1,7 @@
 
 client/node_modules/
+client/dist/
+client/public/
 
 # Dependency directories
 node_modules/

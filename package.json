@@ -4,8 +4,8 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "test": "jest",
-    "start": "node app.js",
+    "test": "jest --runInBand --forceExit",
+    "start": "node index.js",
     "run_build-script": "npm i; cd client/; npm i; npm run build; cd ..; git add .;"
   },
   "repository": {
