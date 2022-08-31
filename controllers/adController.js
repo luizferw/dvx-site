@@ -1,5 +1,4 @@
 const Ads = require('../models/ads')
-// const fs = require('fs')
 
 const adAll = async (req, res) => {
   try {
@@ -72,6 +71,5 @@ module.exports = {
   adPublish,
   adFilterByCategory,
   adSearch,
-  // imageUpload,
   adAll
 }

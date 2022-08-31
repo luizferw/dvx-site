@@ -26,8 +26,8 @@ const getUserById = async (req, res) => {
   try {
     const data = await User.findById(id)
     res.json(data)
-  } catch (err) {
-    console.log(err)
+  } catch (e) {
+    console.log(e)
   }
 }
 
@@ -37,8 +37,8 @@ const getUserByUsername = async (req, res) => {
   try {
     const author = await User.find({ username: username })
     res.json(author)
-  } catch (err) {
-    console.log(err)
+  } catch (e) {
+    console.log(e)
   }
 }
 

@@ -1,4 +1,4 @@
-import { useContext, useMemo, useState, createContext, useEffect } from 'react'
+import { useContext, useMemo, useState, createContext } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { axiosInstance as axios } from '../../../../libs/axios'
 import { User } from '../../../App'
@@ -15,6 +15,7 @@ export default function Form() {
   const [id, setId] = useState('')
   const [description, setDescription] = useState('')
   const [active, setActive] = useState('')
+  // const [file, setFile] = useState(null)
   const [image, setImage] = useState('')
   let [price, setPrice] = useState('')
   let [cep, setCep] = useState('')
