@@ -16,8 +16,8 @@ const adSearch = async (req, res) => {
   try {
     const filterData = await Ads.find({ title: query })
     res.json(filterData)
-  } catch (e) {
-    console.log(e)
+  } catch (err) {
+    console.log(err)
   }
 }
 
@@ -56,7 +56,7 @@ const adDelete = async (req, res) => {
 }
 
 const adPublish = async (req, res) => {
-  const newAds = new Ads(req.body)
+  const newAds = new Ads(req.body.data)
 
   try {
     await newAds.save()
@@ -65,23 +65,6 @@ const adPublish = async (req, res) => {
     console.log(err)
   }
 }
-
-// const imageUpload = (req, res) => {
-//   if (req.file) {
-//     const id = req.params.id
-//     const ext = req.file.mimetype.split('/')[1]
-
-//     fs.rename(
-//       `../client/public/images/${req.file.filename}`,
-//       `../client/public/images/${id}.${ext}`,
-//       e => (e ? console.log(e) : null)
-//     )
-
-//     res.send()
-//   }
-
-//   res.send().status(404)
-// }
 
 module.exports = {
   adDetail,

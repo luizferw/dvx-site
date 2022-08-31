@@ -5,8 +5,7 @@
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node app.js",
-    "run_build-script": "npm i; cd client/; npm i; npm run build; cd ..; git add .;"
+    "api": "nodemon index.js"
   },
   "repository": {
     "type": "git",

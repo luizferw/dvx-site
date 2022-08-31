@@ -1,7 +1,7 @@
 const User = require('../models/user')
 
 const registerUser = async (req, res) => {
-  const newUser = new User(req.body)
+  const newUser = new User(req.body.data)
 
   try {
     await newUser.save()
@@ -15,8 +15,8 @@ const usersAll = async (req, res) => {
   try {
     const data = await User.find()
     res.json(data)
-  } catch (e) {
-    console.log(e)
+  } catch (err) {
+    console.log(err)
   }
 }
 
@@ -26,8 +26,8 @@ const getUserById = async (req, res) => {
   try {
     const data = await User.findById(id)
     res.json(data)
-  } catch (e) {
-    console.log(e)
+  } catch (err) {
+    console.log(err)
   }
 }
 
@@ -37,8 +37,8 @@ const getUserByUsername = async (req, res) => {
   try {
     const author = await User.find({ username: username })
     res.json(author)
-  } catch (e) {
-    console.log(e)
+  } catch (err) {
+    console.log(err)
   }
 }
 
