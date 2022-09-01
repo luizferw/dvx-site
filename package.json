@@ -9,7 +9,7 @@
     ]
   },
   "scripts": {
-    "test": "jest",
+    "test": "jest --runInBand --forceExit",
     "start": "node index.js",
     "run_build-script": "npm i; cd client/; npm i; npm run build; cd ..; git add .;"
   },

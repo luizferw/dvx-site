@@ -15,8 +15,8 @@ const adSearch = async (req, res) => {
   try {
     const filterData = await Ads.find({ title: query })
     res.json(filterData)
-  } catch (err) {
-    console.log(err)
+  } catch (e) {
+    console.log(e)
   }
 }
 
@@ -55,7 +55,7 @@ const adDelete = async (req, res) => {
 }
 
 const adPublish = async (req, res) => {
-  const newAds = new Ads(req.body.data)
+  const newAds = new Ads(req.body)
 
   try {
     await newAds.save()
