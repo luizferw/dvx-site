@@ -1,7 +1,7 @@
 import { useContext } from 'react'
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import { axiosInstance as axios } from '../../../libs/axios'
+import { axiosInstance as axios } from '../../libs/axios'
 import { User } from '../../App'
 
 export default function Login() {

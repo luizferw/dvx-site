@@ -1,6 +1,6 @@
 import { useContext, useMemo, useState, createContext } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { axiosInstance as axios } from '../../../../libs/axios'
+import { axiosInstance as axios } from '../../../libs/axios'
 import { User } from '../../../App'
 import { FormStyle } from '../../../assets/styles/Announce/styleForm'
 import CategoryContainer from './CategoryContainer'

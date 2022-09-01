@@ -7,7 +7,7 @@ import { createContext, useEffect, useState } from 'react'
 import { useMemo } from 'react'
 import DetailsPage from './pages/DetailsPage'
 import NotFound from './pages/NotFound'
-import { axiosInstance as axios } from '../libs/axios'
+import { axiosInstance as axios } from './libs/axios'
 
 export const User = createContext(null)
 export const Ads = createContext('')

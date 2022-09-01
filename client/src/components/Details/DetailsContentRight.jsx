@@ -2,7 +2,7 @@ import { format, parseISO } from 'date-fns'
 import { useState } from 'react'
 import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { axiosInstance as axios } from '../../../libs/axios'
+import { axiosInstance as axios } from '../../libs/axios'
 
 export default function DetailsContentRight({ props }) {
   const [createdAt, setCreatedAt] = useState('')

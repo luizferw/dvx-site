@@ -1,7 +1,7 @@
 import { format, parseISO } from 'date-fns'
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
-import { axiosInstance as axios } from '../../libs/axios'
+import { axiosInstance as axios } from '../libs/axios'
 import DetailsContentLeft from '../components/Details/DetailsContentLeft'
 import DetailsContentRight from '../components/Details/DetailsContentRight'
 import Footer from '../components/Homepage/Footer/Footer'

@@ -1,8 +1,8 @@
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { BrowserRouter } from 'react-router-dom'
-import { UserContextProvider } from '../src/App'
-import LoginPage from '../src/pages/LoginPage'
+import { UserContextProvider } from '../App'
+import LoginPage from '../pages/LoginPage'
 
 describe('LoginPage', () => {
   it('should render LoginPage PAGE correctly', () => {
