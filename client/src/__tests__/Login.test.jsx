@@ -4,6 +4,7 @@ import { BrowserRouter } from 'react-router-dom'
 import { UserContextProvider } from '../App'
 import LoginPage from '../pages/LoginPage'
 import faker from 'faker'
+import mockAxios from '../__mocks__/axios'
 
 describe('LoginPage', () => {
   const renderWithContext = () => {
@@ -79,6 +80,10 @@ describe('LoginPage', () => {
   it('should make email error message visible because is invalid', async () => {
     const { container } = renderWithContext()
 
+    mockAxios.onGet('/users').reply(200, {
+      users: [{ id: 1, name: 'John Smith' }]
+    })
+
     const inputEmail = container.querySelector('input[type="email"]')
     const inputPassword = container.querySelector('input[type="password"]')
     const button = container.querySelector('button[type="submit"]')
@@ -90,9 +95,7 @@ describe('LoginPage', () => {
 
     await userEvent.click(button)
 
-    setTimeout(() => {
-      expect(screen.getByText(/invalid email/i)).toBeInTheDocument()
-    }, 100)
+    expect(screen.getByText(/invalid email/i)).toBeInTheDocument()
   })
 
   it('should make password visible', async () => {
