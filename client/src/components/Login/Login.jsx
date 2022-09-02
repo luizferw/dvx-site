@@ -47,14 +47,20 @@ export default function Login() {
 
     async function verifyUser() {
       const users = await getUsers()
+      let stop = false
       users.forEach(user => {
-        if (user.email === email && user.password === password) {
+        if (user.email === email && user.password === password && !stop) {
           setUserData(user)
           navigate('/')
-        } else if (user.email === email) {
+          stop = true
+        }
+        if (user.email === email && !stop) {
           setError('passwordIncorrect')
-        } else {
+          stop = true
+        }
+        if (user.email !== email && !stop) {
           setError('emailIncorrect')
+          stop = true
         }
       })
     }

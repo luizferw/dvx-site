@@ -1,10 +1,11 @@
-import { render, screen } from '@testing-library/react'
+import { render, screen, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { BrowserRouter } from 'react-router-dom'
 import { UserContextProvider } from '../App'
 import LoginPage from '../pages/LoginPage'
 import faker from 'faker'
 import mockAxios from '../__mocks__/axios'
+import factory from '../__mocks__/factory'
 
 describe('LoginPage', () => {
   const renderWithContext = () => {
@@ -33,14 +34,24 @@ describe('LoginPage', () => {
     expect(button).toBeTruthy()
   })
 
+  it('should make password visible', async () => {
+    const { container } = renderWithContext()
+
+    const button = container.querySelector('svg.relative')
+
+    await userEvent.click(button)
+
+    expect(container.querySelector('input[type="text"]')).toBeTruthy()
+  })
+
   it('should type an email', async () => {
     const { container } = renderWithContext()
 
     const inputEmail = container.querySelector('input[type="email"]')
     const mockEmail = faker.internet.email()
 
-    expect(inputEmail).toBeTruthy()
     await userEvent.type(inputEmail, mockEmail)
+
     expect(inputEmail).toHaveValue(mockEmail)
   })
 
@@ -50,12 +61,12 @@ describe('LoginPage', () => {
     const inputPassword = container.querySelector('input[type="password"]')
     const mockPassword = faker.internet.password()
 
-    expect(inputPassword).toBeTruthy()
     await userEvent.type(inputPassword, mockPassword)
+
     expect(inputPassword).toHaveValue(mockPassword)
   })
 
-  it('should make email error message visible because is empty', async () => {
+  it('should make email error message because is empty', async () => {
     const { container } = renderWithContext()
 
     const button = container.querySelector('button[type="submit"]')
@@ -64,7 +75,7 @@ describe('LoginPage', () => {
     expect(screen.getByText(/fill out this field/i)).toBeInTheDocument()
   })
 
-  it('should make password error message visible because is empty', async () => {
+  it('should make password error message because is empty', async () => {
     const { container } = renderWithContext()
 
     const inputEmail = container.querySelector('input[type="email"]')
@@ -77,12 +88,10 @@ describe('LoginPage', () => {
     expect(screen.getByText(/fill out this field/i)).toBeInTheDocument()
   })
 
-  it('should make email error message visible because is invalid', async () => {
+  it('should make email error message because is invalid', async () => {
     const { container } = renderWithContext()
 
-    mockAxios.onGet('/users').reply(200, {
-      users: [{ id: 1, name: 'John Smith' }]
-    })
+    mockAxios.onGet('/users').reply(200, factory.makeUsers())
 
     const inputEmail = container.querySelector('input[type="email"]')
     const inputPassword = container.querySelector('input[type="password"]')
@@ -98,13 +107,49 @@ describe('LoginPage', () => {
     expect(screen.getByText(/invalid email/i)).toBeInTheDocument()
   })
 
-  it('should make password visible', async () => {
+  it('should make password error message because is invalid', async () => {
     const { container } = renderWithContext()
+    const mockEmail = faker.internet.email()
 
-    const button = container.querySelector('svg.relative')
+    mockAxios
+      .onGet('/users')
+      .reply(200, factory.makeUsers({ email: mockEmail }))
+
+    const inputEmail = container.querySelector('input[type="email"]')
+    const inputPassword = container.querySelector('input[type="password"]')
+    const button = container.querySelector('button[type="submit"]')
+    const mockPassword = faker.internet.password()
+
+    await userEvent.type(inputEmail, mockEmail)
+    await userEvent.type(inputPassword, mockPassword)
 
     await userEvent.click(button)
 
-    expect(container.querySelector('input[type="text"]')).toBeTruthy()
+    expect(screen.getByText(/invalid password/i)).toBeInTheDocument()
+  })
+
+  it('should login a user', async () => {
+    const { container } = renderWithContext()
+    const mockEmail = faker.internet.email()
+    const mockPassword = faker.internet.password()
+
+    mockAxios
+      .onGet('/users')
+      .reply(
+        200,
+        factory.makeUsers({ email: mockEmail, password: mockPassword })
+      )
+
+    const inputEmail = container.querySelector('input[type="email"]')
+    const inputPassword = container.querySelector('input[type="password"]')
+    const button = container.querySelector('button[type="submit"]')
+
+    await userEvent.type(inputEmail, mockEmail)
+    await userEvent.type(inputPassword, mockPassword)
+    await userEvent.click(button)
+
+    expect(screen.queryByText(/invalid password/i)).not.toBeInTheDocument()
+    expect(screen.queryByText(/invalid email/i)).not.toBeInTheDocument()
+    expect(screen.queryByText(/fill out this field/i)).not.toBeInTheDocument()
   })
 })

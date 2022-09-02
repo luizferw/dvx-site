@@ -76,7 +76,7 @@ export default function Register() {
 
       axios
         .post('/users/register', {
-          data: registerUser
+          ...registerUser
         })
         .then(() => {
           setLogged(true)
