@@ -2,9 +2,6 @@
 
 A personal project based on a site about purchase and sell
 
-Link to the app: https://dvx-site.herokuapp.com/
-
-
 ## 🛠 Technologies
 
 The following tools were used in building the project:
